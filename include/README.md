@@ -1,1 +1,3 @@
-Once look at camera class or change it while working on your branch, I guess there is some  problem
+# ComputerGraphics
+
+I think camera class is not functioning well, so please check it when you are working
