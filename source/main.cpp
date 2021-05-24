@@ -251,13 +251,13 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
         mouse = false;
     }
 
-    float xoffset = xpos - lastX;
-    float yoffset = lastY - ypos; 
+    float xOffset = xpos - lastX;
+    float yOffset = lastY - ypos;
 
     lastX = xpos;
     lastY = ypos;
 
-    camera.ProcessMouseMovement(xoffset, yoffset);
+    camera.ProcessMouseMovement(xOffset, yOffset);
 }
 
 // glfw: whenever the mouse scroll wheel scrolls, this callback is called
