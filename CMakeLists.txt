@@ -5,5 +5,5 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(ComputerGraphics include/Features include/Living include/Bedroom include/Kitchen )
 set(SOURCE_FILES)
 add_executable(ComputerGraphics resources/Glad/glad.c source/main.cpp source/Features/indexBuffer.cpp source/Features/vertexBuffer.cpp source/Features/shader.cpp source/Features/texture.cpp source/Features/vertexArray.cpp source/Features/renderer.cpp source/Features/camera.cpp )
-target_link_libraries(ComputerGraphics GL GLU glfw3 dl X11 Xxf86vm Xrandr pthread Xi dl assimp)
+target_link_libraries(ComputerGraphics GL GLU glfw dl X11 Xxf86vm Xrandr pthread Xi dl assimp)
 
