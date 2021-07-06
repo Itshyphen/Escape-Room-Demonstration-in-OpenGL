@@ -81,12 +81,7 @@ namespace visualisation
 
 visualisation::render::~render()
     {
-        glDeleteVertexArrays(1, &cubeVAO);
-        glDeleteVertexArrays(1, &lightVAO);
-        glDeleteVertexArrays(1, &skyboxVAO);
-        glDeleteBuffers(1, &skyboxVBO);
-        glDeleteBuffers(1, &cubeVBO);
-        cout << "Successfully deleted Buffers" << endl;
+        
     }
 
 void visualisation::render::getModels() {
@@ -287,13 +282,13 @@ void visualisation::render::getModels() {
 
     void visualisation::render::setLightPosition()
     {
-        lightPosition.push_back(glm::vec3(w / 4, h / 2 - 0.7, l / 4));
-        lightPosition.push_back(glm::vec3(w / 4, h / 2 - 0.7 , -l / 4));
-        lightPosition.push_back(glm::vec3(-w / 4, h / 2 - 0.7 , l / 4));
-        lightPosition.push_back(glm::vec3(-w / 4, h / 2 - 0.7, -l / 4));
+        lightPosition.push_back(glm::vec3(3,3,3));
+        lightPosition.push_back(glm::vec3(7,7,7));
+        lightPosition.push_back(glm::vec3(0,0,0));
+        lightPosition.push_back(glm::vec3(9,9,9));
     }
     void visualisation::render::visualise(){
-        std::cout<<"aaaa";
+        // std::cout<<"aaaa";
         initializeGlfw();
 
         // build and compile shaders
@@ -424,15 +419,15 @@ void visualisation::render::getModels() {
             glBindVertexArray(lightVAO);
 
             //Do not delete this, needed later
-//            for (unsigned int i = 0; i < 4; i++)
-//            {
-//                glm::mat4 model(1);
-//                model = glm::translate(model, lightPosition[i]);
-//                model = glm::rotate(model, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-//                model = glm::scale(model, glm::vec3(1.0f)); // a smaller cube
-//                lampShader.setMat4("model", model);
-//                glDrawArrays(GL_TRIANGLES, 0, 6);
-//            }
+           for (unsigned int i = 0; i < 4; i++)
+           {
+               glm::mat4 model(1.0);
+               model = glm::translate(model, lightPosition[i]);
+            //    model = glm::rotate(model, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+            //    model = glm::scale(model, glm::vec3(1.0f)); // a smaller cube
+               lampShader.setMat4("model", model);
+               glDrawArrays(GL_TRIANGLES, 0, 6);
+           }
 
             // draw skybox as last
             glDepthFunc(GL_LEQUAL);  // change depth function so depth test passes when values are equal to depth buffer's content
@@ -454,66 +449,18 @@ void visualisation::render::getModels() {
             glfwPollEvents();
         }
         //All the buffers are deleted in destructor
+        glDeleteVertexArrays(1, &cubeVAO);
+        glDeleteVertexArrays(1, &lightVAO);
+        glDeleteVertexArrays(1, &skyboxVAO);
+        glDeleteBuffers(1, &skyboxVBO);
+        glDeleteBuffers(1, &cubeVBO);
+        cout << "Successfully deleted Buffers" << endl;
 
         glfwTerminate();
 
     }
 
-    Object* createRoom()
-    {
-
-        auto roomObjects = new Object("roomObj");
-        roomObjects->setPosition(0.0f,0.0,0.0f);
-        roomObjects->setScale(3.0f,3.0f,3.0f);
-        roomObjects->setRotationVector(0,1,0);
-        roomObjects->setAngle(0);
-        roomObjects->setModelName("../resources/models/Room/room.obj");
-
-        auto door = new Object("door");
-        door->setPosition(0.1f,0.0,0.0f);
-        door->setScale(3.0f,3.0f,3.0f);
-        door->setRotationVector(0,1,0);
-        door->setAngle(0);
-        door->setModelName("../resources/models/Door/door.obj");
-//
-//        auto card1 = new Object("card1");
-//        card1->setPosition(0.0f,-7.5,0.0f);
-//        card1->setScale(2.0f,2.0f,2.0f);
-//        card1->setRotationVector(0,1,0);
-//        card1->setAngle(0);
-//        card1->setModelName("../resources/door/door.obj");
-//
-//        auto card2 = new Object("card1");
-//        card2->setPosition(0.0f,-7.5,0.0f);
-//        card2->setScale(2.0f,2.0f,2.0f);
-//        card2->setRotationVector(0,1,0);
-//        card2->setAngle(0);
-//        card2->setModelName("../resources/door/door.obj");
-//
-//        auto card3 = new Object("card1");
-//        card3->setPosition(0.0f,-7.5,0.0f);
-//        card3->setScale(2.0f,2.0f,2.0f);
-//        card3->setRotationVector(0,1,0);
-//        card3->setAngle(0);
-//        card3->setModelName("../resources/door/door.obj");
-//
-//        auto card4 = new Object("card1");
-//        card4->setPosition(0.0f,-7.5,0.0f);
-//        card4->setScale(2.0f,2.0f,2.0f);
-//        card4->setRotationVector(0,1,0);
-//        card4->setAngle(0);
-//        card4->setModelName("../resources/door/door.obj");
-
-        auto room =new Object;
-        room->addObject(roomObjects);
-        room->addObject(door);
-//        room->addObject(card1);
-//        room->addObject(card2);
-//        room->addObject(card3);
-//        room->addObject(card4);
-
-        return room;
-    }
+    
 
     // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
     // ---------------------------------------------------------------------------------------------------------
