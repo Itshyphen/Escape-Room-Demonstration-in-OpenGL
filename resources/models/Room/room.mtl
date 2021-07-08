@@ -1,5 +1,5 @@
 # Blender MTL File: 'room.blend'
-# Material Count: 36
+# Material Count: 71
 
 newmtl 1
 Ns 225.000000
@@ -10,8 +10,19 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd Textures/1.jpg
-map_d Textures/1.jpg
+map_Kd Pictures/1.jpg
+map_d Pictures/1.jpg
+
+newmtl Bed
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/darkwood.jpg
 
 newmtl Bedsheet
 Ns 225.000000
@@ -22,18 +33,18 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd Textures/cotton.jpg
+map_Kd /Pictures/cotton.png
 
-newmtl Bedsheet.001
+newmtl BedsideDrawer
 Ns 225.000000
 Ka 1.000000 1.000000 1.000000
-Kd 0.800000 0.800000 0.800000
+Kd 1.000000 1.000000 1.000000
 Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd Textures/blanket.jpg
+map_Kd Pictures/bedsidewood.jpeg
 
 newmtl BlackGlossy
 Ns 225.000000
@@ -44,6 +55,18 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
+map_Kd .
+
+newmtl BlueClue
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 0.000000 0.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/blue.jpeg
 
 newmtl Brown
 Ns 225.000000
@@ -54,7 +77,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd Textures/wood.jpg
+map_Kd Pictures/darkwood.jpg
 
 newmtl Brown.001
 Ns 225.000000
@@ -65,6 +88,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
+map_Kd Pictures/bedsidewood.jpeg
 
 newmtl ChairBlack
 Ns 225.000000
@@ -75,6 +99,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
+map_Kd Pictures/doorknob.jpg
 
 newmtl ChairStandGray
 Ns 225.000000
@@ -85,6 +110,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
+map_Kd Pictures/door.jpg
 
 newmtl ClueNum
 Ns 225.000000
@@ -95,26 +121,40 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
+map_Kd Pictures/door.jpg
 
-newmtl DimGray
+newmtl DRawer1
 Ns 225.000000
 Ka 1.000000 1.000000 1.000000
-Kd 0.116971 0.135633 0.181164
+Kd 0.000000 1.000000 0.000000
 Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
+map_Kd Pictures/bedsidewood.jpeg
 
-newmtl DoorTan
+newmtl Decoration
 Ns 225.000000
 Ka 1.000000 1.000000 1.000000
-Kd 0.479320 0.407240 0.327778
+Kd 0.800000 0.800000 0.800000
 Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
+map_Kd Pictures/decoration.jpg
+
+newmtl Doorframe.001
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/cream-wall.jpg
 
 newmtl Floor
 Ns 225.000000
@@ -125,6 +165,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
+map_Kd Pictures/bedsidewood.jpeg
 
 newmtl Floor.001
 Ns 225.000000
@@ -135,6 +176,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
+map_Kd Pictures/wall.jpeg
 
 newmtl Glass_material
 Ns 323.999994
@@ -155,16 +197,18 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
+map_Kd Pictures/lamp.jpg
 
 newmtl GreenClue
 Ns 225.000000
 Ka 1.000000 1.000000 1.000000
-Kd 0.000000 1.000000 0.000000
+Kd 1.000000 0.000000 0.000000
 Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
+map_Kd Pictures/green.jpg
 
 newmtl InnerBedSheet
 Ns 225.000000
@@ -175,7 +219,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd Textures/cotton.jpg
+map_Kd Pictures/cotton.jpg
 
 newmtl Knob
 Ns 225.000000
@@ -186,6 +230,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
+map_Kd .
 
 newmtl LampStand
 Ns 225.000000
@@ -196,6 +241,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
+map_Kd Pictures/wood.jpg
 
 newmtl LightPink
 Ns 225.000000
@@ -206,16 +252,40 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
+map_Kd Pictures/coffee.jpg
 
 newmtl Material
 Ns 225.000000
 Ka 1.000000 1.000000 1.000000
-Kd 0.730461 0.318547 0.135633
+Kd 0.800000 0.800000 0.800000
 Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
+map_Kd .
+
+newmtl Material.001
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/book-cover.jpg
+
+newmtl Material.002
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/cream-wall.jpg
 
 newmtl Material.003
 Ns 225.000000
@@ -226,7 +296,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd Textures/wood.jpg
+map_Kd Pictures/darkwood.jpg
 
 newmtl Material.004
 Ns 225.000000
@@ -237,7 +307,193 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd Textures/wood.jpg
+map_Kd Pictures/darkwood.jpg
+
+newmtl Material.005
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/cream-wall.jpg
+
+newmtl Material.006
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/cream-wall.jpg
+
+newmtl Material.007
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/book2.jpg
+
+newmtl Material.008
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/dustbin.jpg
+
+newmtl Material.009
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/dustbin.jpg
+
+newmtl Material.010
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd .
+
+newmtl Material.011
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl Material.012
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/yellow.jpeg
+
+newmtl Material.013
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/pencil.jpg
+
+newmtl Material.014
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/pencil.jpg
+
+newmtl Material.015
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/wood.jpg
+
+newmtl Material.016
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/orange-chair.jpg
+
+newmtl Material.017
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd .
+
+newmtl Material.018
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd .
+
+newmtl Material.019
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd .
+
+newmtl Material.024
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/door.jpg
+
+newmtl Material.025
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/door.jpg
 
 newmtl MediumBrown
 Ns 225.000000
@@ -248,14 +504,18 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
+map_Kd Pictures/wood.jpg
 
-newmtl None
-Ns 500
-Ka 0.8 0.8 0.8
-Kd 0.8 0.8 0.8
-Ks 0.8 0.8 0.8
-d 1
+newmtl OuterBedsheet
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
 illum 2
+map_Kd Pictures/bedsheet.jpeg
 
 newmtl Pillow
 Ns 225.000000
@@ -266,7 +526,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd Textures/blanket.jpg
+map_Kd Pictures/bedsheet.jpeg
 
 newmtl Pillow.001
 Ns 225.000000
@@ -277,7 +537,18 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd Textures/blanket.jpg
+map_Kd Pictures/bedsheet.jpeg
+
+newmtl Pillow.002
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/orange-chair.jpg
 
 newmtl Plastic_Handle_material
 Ns 323.999994
@@ -298,6 +569,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
+map_Kd Pictures/red.jpeg
 
 newmtl SlateGrey
 Ns 225.000000
@@ -308,6 +580,50 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
+map_Kd Pictures/carpet.jpg
+
+newmtl Table_foot
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl Table_top
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.730461 0.318547 0.135633
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/table_tan.jpeg
+
+newmtl Trash1
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/door.jpg
+
+newmtl Trash2
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/door.jpg
 
 newmtl White
 Ns 225.000000
@@ -318,6 +634,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
+map_Kd Pictures/door.jpg
 
 newmtl Window_material
 Ns 323.999994
@@ -329,7 +646,18 @@ Ni 1.000000
 d 1.000000
 illum 2
 
-newmtl Wood
+newmtl YellowClue.001
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 0.000000 0.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/yellow.jpeg
+
+newmtl bigbook
 Ns 225.000000
 Ka 1.000000 1.000000 1.000000
 Kd 0.800000 0.800000 0.800000
@@ -338,7 +666,62 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd Textures/wood.jpg
+map_Kd Pictures/big-book.jpeg
+
+newmtl bigdrawer_door
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/table_tan.jpeg
+
+newmtl book3
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/book3.jpg
+
+newmtl book5
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/book5.jpg
+
+newmtl book6
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/book6.jpg
+
+newmtl book7
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/book7.jpg
 
 newmtl carpet
 Ns 225.000000
@@ -349,7 +732,18 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd Textures/carpet.jpg
+map_Kd Pictures/yellowcarpet.jpg
+
+newmtl greenbook
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/book1984.jpg
 
 newmtl hidden_material
 Ns 323.999994
@@ -370,5 +764,16 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd Textures/lowpoly.jpeg
-map_d Textures/lowpoly.jpeg
+map_Kd Pictures/lowpoly.jpeg
+map_d Pictures/lowpoly.jpeg
+
+newmtl paper
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Pictures/cream-wall.jpg

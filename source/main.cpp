@@ -2,12 +2,12 @@
 
 int main()
 {
-   //   auto roomObjects = new Object("roomObj");
-   //      roomObjects->setPosition(0.0f,0.0,0.0f);
-   //      roomObjects->setScale(3.0f,3.0f,3.0f);
-   //      roomObjects->setRotationVector(0,1,0);
-   //      roomObjects->setAngle(0);
-   //      roomObjects->setModelName("../resources/models/Room/room.obj");
+     auto roomObjects = new Object("roomObj");
+        roomObjects->setPosition(0.0f,0.0,0.0f);
+        roomObjects->setScale(3.0f,3.0f,3.0f);
+        roomObjects->setRotationVector(0,1,0);
+        roomObjects->setAngle(0);
+        roomObjects->setModelName("../resources/models/Room/room.obj");
 
         auto door = new Object("door");
         door->setPosition(0.0f,0.0,0.0f);
@@ -45,7 +45,7 @@ int main()
        card4->setModelName("../resources/door/door.obj");
 
         auto room =new Object;
-      //   room->addObject(roomObjects);
+        room->addObject(roomObjects);
         room->addObject(door);
        room->addObject(card1);
        room->addObject(card2);

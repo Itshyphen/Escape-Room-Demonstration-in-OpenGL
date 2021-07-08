@@ -1,6 +1,4 @@
-
-
-// GLFW - glad - stb_image
+// GLFW - glad
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
@@ -63,6 +61,8 @@ namespace visualisation
     // settings
     const unsigned int SCR_WIDTH = 1280;
     const unsigned int SCR_HEIGHT = 720;
+
+    bool opendoor = false;
 
     // camera
     Camera camera(glm::vec3(0.0f, 5.0f, 20.0f));
@@ -272,20 +272,14 @@ void visualisation::render::getModels() {
     }
 
 
-    void visualisation::render::setLampPosition()
-    {
-        lampPosition.push_back(glm::vec3(w / 4, h / 2, l / 4));
-        lampPosition.push_back(glm::vec3(w / 4, h / 2, -l / 4));
-        lampPosition.push_back(glm::vec3(-w / 4, h / 2, l / 4));
-        lampPosition.push_back(glm::vec3(-w / 4, h / 2, -l / 4));
-    }
-
     void visualisation::render::setLightPosition()
     {
-        lightPosition.push_back(glm::vec3(3,3,3));
-        lightPosition.push_back(glm::vec3(7,7,7));
-        lightPosition.push_back(glm::vec3(0,0,0));
-        lightPosition.push_back(glm::vec3(9,9,9));
+        lightPosition.push_back(glm::vec3(0.8,6,-5.1));
+        lightPosition.push_back(glm::vec3(-0.8,6,-5.1));
+
+//Lamp light
+        lightPosition.push_back(glm::vec3(3.55,2.1,-4.6));
+        lightPosition.push_back(glm::vec3(0,40,0));
     }
     void visualisation::render::visualise(){
         // std::cout<<"aaaa";
@@ -297,7 +291,7 @@ void visualisation::render::getModels() {
         Shader lampShader("../resources/shaders/lightvertex.vs", "../resources/shaders/lightfragment.fs"); //Light Shader
         Shader skyboxShader("../resources/shaders/skybox.vs", "../resources/shaders/skybox.fs"); //CubeMap Shader
 
-        setLampPosition();
+        // setLampPosition();
         setLightPosition();
         //initiliaze vertex
         initializeVertex();
@@ -337,8 +331,8 @@ void visualisation::render::getModels() {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             ourShader.Bind();
             ourShader.setVec3("viewPos", camera.Position);
-            ourShader.setFloat("material.shininess", 64.0f);
-            //light properties
+            ourShader.setFloat("material.shininess", 32.0f);
+            // light properties
             ourShader.setVec3("dirLight.direction", -0.2f, -1.0f, -0.3f);
             ourShader.setVec3("dirLight.ambient", 0.05f, 0.05f, 0.05f);
             ourShader.setVec3("dirLight.diffuse", 0.4f, 0.4f, 0.4f);
@@ -359,22 +353,23 @@ void visualisation::render::getModels() {
             ourShader.setFloat("pointLights[1].constant", 1.0f);
             ourShader.setFloat("pointLights[1].linear", 0.09);
             ourShader.setFloat("pointLights[1].quadratic", 0.032);
-            // point light 2
-            ourShader.setVec3("pointLights[2].position", lightPosition[2]);
+            // // point light 2
+        ourShader.setVec3("pointLights[2].position", lightPosition[2]);
             ourShader.setVec3("pointLights[2].ambient", 0.05f, 0.05f, 0.05f);
-            ourShader.setVec3("pointLights[2].diffuse", 0.8f, 0.8f, 0.8f);
+            ourShader.setVec3("pointLights[2].diffuse", 1.0f, 1.0f, 0.5f);
             ourShader.setVec3("pointLights[2].specular", 1.0f, 1.0f, 1.0f);
             ourShader.setFloat("pointLights[2].constant", 1.0f);
             ourShader.setFloat("pointLights[2].linear", 0.09);
             ourShader.setFloat("pointLights[2].quadratic", 0.032);
-            // point light 3
+            // // point light 3
             ourShader.setVec3("pointLights[3].position", lightPosition[3]);
-            ourShader.setVec3("pointLights[3].ambient", 0.05f, 0.05f, 0.05f);
+            ourShader.setVec3("pointLights[3].ambient", 0.15f, 0.15f, 0.15f);
             ourShader.setVec3("pointLights[3].diffuse", 0.8f, 0.8f, 0.8f);
             ourShader.setVec3("pointLights[3].specular", 1.0f, 1.0f, 1.0f);
-            ourShader.setFloat("pointLights[3].constant", 1.0f);
-            ourShader.setFloat("pointLights[3].linear", 0.09);
-            ourShader.setFloat("pointLights[3].quadratic", 0.032);
+            ourShader.setFloat("pointLights[3].constant", 0.01f);
+            ourShader.setFloat("pointLights[3].linear", 0.0004);
+            ourShader.setFloat("pointLights[3].quadratic", 0.0013);
+
 
             ourShader.Bind();
 
@@ -399,34 +394,29 @@ void visualisation::render::getModels() {
                 ourShader.setMat4("model", modelObject);
                 models[i].Draw(ourShader);
                 cout << "Drawing Objects in the room" << endl;
+
+                
             }
 
-
-            //Do not delete this, needed later
-            //lamp object position
-//            for (int i = 0; i < lampPosition.size(); i++)
-//            {
-//                glm::mat4 model(1);
-//                model = glm::translate(model, lampPosition[i]); // translate it down so it's at the center of the scene
-//                model = glm::scale(model, glm::vec3(0.02f, 0.02f, 0.02f));	// it's a bit too big for our scene, so scale it down
-//                ourShader.setMat4("model", model);
-//                lamp.Draw(ourShader);
-//            }
-            //lamp white light
-            lampShader.Bind();
-            lampShader.setMat4("projection", projection);
-            lampShader.setMat4("view", view);
-            glBindVertexArray(lightVAO);
-
-            //Do not delete this, needed later
-           for (unsigned int i = 0; i < 4; i++)
+            //light objects
+           for (unsigned int i = 0; i < 2; i++)
            {
                glm::mat4 model(1.0);
                model = glm::translate(model, lightPosition[i]);
-            //    model = glm::rotate(model, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-            //    model = glm::scale(model, glm::vec3(1.0f)); // a smaller cube
+               model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+               model = glm::scale(model, glm::vec3(0.03f,0.05f,1.8f)); // a smaller cube
                lampShader.setMat4("model", model);
-               glDrawArrays(GL_TRIANGLES, 0, 6);
+               glDrawArrays(GL_TRIANGLES, 0, 36);
+           }
+
+              for (unsigned int i = 2; i < 4; i++)
+           {
+               glm::mat4 model(1.0);
+               model = glm::translate(model, lightPosition[i]);
+               model = glm::rotate(model, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+               model = glm::scale(model, glm::vec3(0.1f,0.15f,0.15f)); // a smaller cube
+               lampShader.setMat4("model", model);
+               glDrawArrays(GL_TRIANGLES, 0, 36);
            }
 
             // draw skybox as last
@@ -469,15 +459,22 @@ void visualisation::render::getModels() {
         if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
             glfwSetWindowShouldClose(window, true);
 
-        if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-            camera.ProcessKeyboard(FORWARD, deltaTime);
-        if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-            camera.ProcessKeyboard(BACKWARD, deltaTime);
-        if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-            camera.ProcessKeyboard(LEFT, deltaTime);
-        if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-            camera.ProcessKeyboard(RIGHT, deltaTime);
+           if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+        camera.ProcessKeyboard(FORWARD, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+        camera.ProcessKeyboard(BACKWARD, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+        camera.ProcessKeyboard(LEFT, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+        camera.ProcessKeyboard(RIGHT, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS)
+        camera.ProcessKeyboard(UP, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS)
+        camera.ProcessKeyboard(DOWN, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS)
+        opendoor = true;
     }
+
 
     // glfw: whenever the window size changed (by OS or user resize) this callback function executes
     // ---------------------------------------------------------------------------------------------
