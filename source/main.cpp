@@ -7,7 +7,7 @@ int main()
         roomObjects->setScale(3.0f,3.0f,3.0f);
         roomObjects->setRotationVector(0,1,0);
         roomObjects->setAngle(0);
-        roomObjects->setModelName("../resources/models/Room/room.obj");
+        roomObjects->setModelName("../resources/models/Room/room2.obj");
 
         auto door = new Object("door");
         door->setPosition(0.0f,0.0,0.0f);
@@ -18,10 +18,10 @@ int main()
 
        auto card1 = new Object("card1");
        card1->setPosition(0.0f,-7.5,0.0f);
-       card1->setScale(2.0f,2.0f,2.0f);
+       card1->setScale(3.0f,3.0f,3.0f);
        card1->setRotationVector(0,1,0);
        card1->setAngle(0);
-       card1->setModelName("../resources/door/door.obj");
+       card1->setModelName("../resources/Room/windw.obj");
 
        auto card2 = new Object("card1");
        card2->setPosition(0.0f,-7.5,0.0f);
