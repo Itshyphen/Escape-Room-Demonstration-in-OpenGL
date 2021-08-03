@@ -1,6 +1,6 @@
 // GLFW - glad
 #include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include<GLFW/glfw3.h>
 
 // GLM Mathemtics
 #include <glm/glm.hpp>
