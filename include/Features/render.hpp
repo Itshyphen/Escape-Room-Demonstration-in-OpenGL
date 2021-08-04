@@ -187,8 +187,8 @@ vector<std::string> faces{
     "../resources/sky/left.jpg",
     "../resources/sky/top.jpg",
     "../resources/sky/bottom.jpg",
-    "../resources/sky/front.jpg",
-    "../resources/sky/back.jpg"};
+    "../resources/sky/back.jpg",
+    "../resources/sky/front.jpg"};
 
 void visualisation::render::initializeGlfw()
 {
