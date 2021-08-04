@@ -2,7 +2,7 @@
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-// #include <arithmetic.hpp>
+#include <matrix.hpp>
 #include <vector>
 
 // Defines several possible options for camera movement. Used as abstraction to stay away from window-system specific input methods
@@ -33,6 +33,14 @@ public:
     glm::vec3 Up;
     glm::vec3 Right;
     glm::vec3 WorldUp;
+
+    //Camera Attributes in VecMat
+    // VecMat::vec3 Position;
+    // VecMat::vec3 Front;
+    // VecMat::vec3 Up;
+    // VecMat::vec3 Right;
+    // VecMat::vec3 WorldUp;
+
     // euler Angles
     float Yaw;
     float Pitch;
@@ -43,11 +51,17 @@ public:
 
     // constructor with vectors
     Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), float yaw = YAW, float pitch = PITCH);
+
+    //Constructor with VecMat Library
+    Camera(VecMat::vec3 position = VecMat::vec3(0.0f, 0.0f, 0.0f), VecMat::vec3 up = VecMat::vec3(0.0f, 1.0f, 0.0f), float yaw = YAW, float pitch = PITCH);
+
     // constructor with scalar values
     Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch);
 
     // returns the view matrix calculated using Euler Angles and the LookAt Matrix
     glm::mat4 GetViewMatrix();
+
+    // VecMat::mat4 GetViewMatrix();
 
     // processes input received from any keyboard-like input system. Accepts input parameter in the form of camera defined ENUM (to abstract it from windowing systems)
     void ProcessKeyboard(Camera_Movement direction, float deltaTime);

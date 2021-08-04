@@ -7,12 +7,9 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-// GL includes
-// #include "shader.hpp"
 #include "camera.hpp"
 #include "model.hpp"
 #include "object.hpp"
-// #include "vertexArray.hpp"
 
 #include <iostream>
 #include<string>
@@ -282,7 +279,7 @@ void visualisation::render::getModels() {
         lightPosition.push_back(glm::vec3(0,40,0));
     }
     void visualisation::render::visualise(){
-        // std::cout<<"aaaa";
+        
         initializeGlfw();
 
         // build and compile shaders
