@@ -406,6 +406,9 @@ void visualisation::render::getModels() {
                model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
                model = glm::scale(model, glm::vec3(0.03f,0.05f,1.8f)); // a smaller cube
                lampShader.setMat4("model", model);
+            //    glm::vec3 ml(model);
+            //    glm::mat4 m = glm::translate(camera.Position,ml)
+            //    printf("%s\n", (camera.Position).c_str());
                glDrawArrays(GL_TRIANGLES, 0, 36);
            }
 
@@ -416,8 +419,11 @@ void visualisation::render::getModels() {
                model = glm::rotate(model, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
                model = glm::scale(model, glm::vec3(0.1f,0.15f,0.15f)); // a smaller cube
                lampShader.setMat4("model", model);
+
                glDrawArrays(GL_TRIANGLES, 0, 36);
            }
+
+           
 
             // draw skybox as last
             glDepthFunc(GL_LEQUAL);  // change depth function so depth test passes when values are equal to depth buffer's content

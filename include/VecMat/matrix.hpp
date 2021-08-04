@@ -119,6 +119,7 @@ namespace VecMat {
 		float* operator [](const int index){
 			return mat[index];
 		}
+		
 
 		float& operator [](const std::pair<int, int>& index) {
 			return mat[index.first][index.second];

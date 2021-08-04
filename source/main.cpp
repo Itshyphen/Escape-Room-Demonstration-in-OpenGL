@@ -121,8 +121,11 @@ int main()
             glm::mat4 p(1);
             p = glm::perspective(glm::radians(45.0f), (float)1920/(float)400, 0.1f, 100.0f);
    VecMat::mat4 projection = VecMat::perspective(45, (float)1920/(float)400, 0.1f, 100.0f);
-   std::cout<<tan(glm::radians(45.0f)/2)<<std::endl;
-   std::cout<<tan(45/2*3.14/180)<<std::endl;
+   
+   p = glm::rotate(p, glm::radians((float) 45), glm::vec3(0.0f, 1.0f, 0.0f));
+    projection = VecMat::rotate(projection, VecMat::vec3(0.0f, 1.0f, 0.0f), (float) 45);
+    p = glm::scale(p,  glm::vec3(7.0f, 9.0f, 5.0f));
+    projection = VecMat::scale(projection,  VecMat::vec3(7.0f, 9.0f, 5.0f));
 
     for(int x=0;x<4;x++)  // loop 3 times for three lines
     {
