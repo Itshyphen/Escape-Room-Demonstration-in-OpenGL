@@ -183,12 +183,12 @@ float skyboxVertices[] = {
     -1.0f, -1.0f, 1.0f,
     1.0f, -1.0f, 1.0f};
 vector<std::string> faces{
-    "../resources/skybox/right.jpg",
-    "../resources/skybox/left.jpg",
-    "../resources/skybox/top.jpg",
-    "../resources/skybox/bottom.jpg",
-    "../resources/skybox/front.jpg",
-    "../resources/skybox/back.jpg"};
+    "../resources/sky/right.jpg",
+    "../resources/sky/left.jpg",
+    "../resources/sky/top.jpg",
+    "../resources/sky/bottom.jpg",
+    "../resources/sky/front.jpg",
+    "../resources/sky/back.jpg"};
 
 void visualisation::render::initializeGlfw()
 {
