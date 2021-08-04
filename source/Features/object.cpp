@@ -30,7 +30,7 @@ void Object::setPosition(double x, double y, double z)
 	position.z = z;
 }
 
-glm::vec3 Object::getPosition()
+VecMat::vec3 Object::getPosition()
 {
 	return position;
 }
@@ -43,7 +43,7 @@ void Object::setScale(double x, double y, double z)
 	scale.z = z;
 }
 
-glm::vec3 Object::getScale()
+VecMat::vec3 Object::getScale()
 {
 	return scale;
 }
@@ -55,7 +55,7 @@ void Object::setRotationVector(double x, double y, double z)
 	rotationangle.y = y;
 	rotationangle.z = z;
 }
-glm::vec3 Object::getRotationVector()
+VecMat::vec3 Object::getRotationVector()
 {
 	return rotationangle;
 }

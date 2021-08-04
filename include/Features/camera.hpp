@@ -28,18 +28,18 @@ class Camera
 {
 public:
     // camera Attributes
-    glm::vec3 Position;
-    glm::vec3 Front;
-    glm::vec3 Up;
-    glm::vec3 Right;
-    glm::vec3 WorldUp;
+    // glm::vec3 Position;
+    // glm::vec3 Front;
+    // glm::vec3 Up;
+    // glm::vec3 Right;
+    // glm::vec3 WorldUp;
 
     //Camera Attributes in VecMat
-    // VecMat::vec3 Position;
-    // VecMat::vec3 Front;
-    // VecMat::vec3 Up;
-    // VecMat::vec3 Right;
-    // VecMat::vec3 WorldUp;
+    VecMat::vec3 Position;
+    VecMat::vec3 Front;
+    VecMat::vec3 Up;
+    VecMat::vec3 Right;
+    VecMat::vec3 WorldUp;
 
     // euler Angles
     float Yaw;
@@ -59,9 +59,9 @@ public:
     Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch);
 
     // returns the view matrix calculated using Euler Angles and the LookAt Matrix
-    glm::mat4 GetViewMatrix();
+    // glm::mat4 GetViewMatrix();
 
-    // VecMat::mat4 GetViewMatrix();
+    VecMat::mat4 GetViewMatrix();
 
     // processes input received from any keyboard-like input system. Accepts input parameter in the form of camera defined ENUM (to abstract it from windowing systems)
     void ProcessKeyboard(Camera_Movement direction, float deltaTime);

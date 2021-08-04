@@ -2,14 +2,15 @@
 #include <utility>
 #include<glm/glm.hpp>
 #include<string>
+#include <matrix.hpp>
 
 #pragma once
 
 class Object {
 private:
-	glm::vec3 position;
-	glm::vec3 scale;
-	glm::vec3 rotationangle;
+	VecMat::vec3 position;
+	VecMat::vec3 scale;
+	VecMat::vec3 rotationangle;
 	double angle;
 	std::string ModelName;
 	std::string text;
@@ -26,14 +27,14 @@ public:
 
 	//get set functions for center coordinates
 	void setPosition(double x, double y, double z);
-    glm::vec3 getPosition();
+    VecMat::vec3 getPosition();
 
 	//get set functions for scale
 	void setScale(double x, double y, double z);
-	glm::vec3 getScale();
+	VecMat::vec3 getScale();
 
 	void setRotationVector(double x, double y, double z);
-	glm::vec3 getRotationVector();
+	VecMat::vec3 getRotationVector();
     
 	void setAngle(double a);
 	double getAngle();

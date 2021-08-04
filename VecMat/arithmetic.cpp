@@ -42,30 +42,30 @@ mat3::mat3(mat4 mat4){
 
 
 	mat4 scale(const mat4& mat, vec3 vec) {
-		// mat4 result = mat;
-		// result.mat[0][0] *= vec.x;
-		// result.mat[1][1] *= vec.y;
-		// result.mat[2][2] *= vec.z;
-		// return result;
-		mat4 result;
-		for (int k = 0; k < 4; k++)
-		{
-			result.mat[0][k] = mat.mat[0][k] * vec.x;
-		}
-		for (int k = 0; k < 4; k++)
-		{
-			result.mat[1][k] = mat.mat[1][k] * vec.y;
-		}
-		for (int k = 0; k < 4; k++)
-		{
-			result.mat[2][k] = mat.mat[2][k] * vec.z;
-		}
-		for (int k = 0; k < 4; k++)
-		{
-			result.mat[3][k] = mat.mat[3][k];
-		}
-
+		mat4 result = mat;
+		result.mat[0][0] *= vec.x;
+		result.mat[1][1] *= vec.y;
+		result.mat[2][2] *= vec.z;
 		return result;
+		// mat4 result;
+		// for (int k = 0; k < 4; k++)
+		// {
+		// 	result.mat[0][k] = mat.mat[0][k] * vec.x;
+		// }
+		// for (int k = 0; k < 4; k++)
+		// {
+		// 	result.mat[1][k] = mat.mat[1][k] * vec.y;
+		// }
+		// for (int k = 0; k < 4; k++)
+		// {
+		// 	result.mat[2][k] = mat.mat[2][k] * vec.z;
+		// }
+		// for (int k = 0; k < 4; k++)
+		// {
+		// 	result.mat[3][k] = mat.mat[3][k];
+		// }
+
+		// return result;
 	}
 
 
@@ -126,14 +126,14 @@ mat3::mat3(mat4 mat4){
 		vec3 axis = vec.unitVector();
 
 		result = translate(result, -point);
-		result = rotate(matrix, vec, angle);
+		result = rotate(matrix, angle, vec);
 		result = translate(result, point);
 
 
 		return result * matrix;
 	}
 
-	mat4 rotate(const mat4& matrix, const vec3& vec, const float angle) {
+	mat4 rotate(const mat4& matrix, const float angle, const vec3& vec) {
 		mat4 result(1.0f);
 		vec3 axis = vec.unitVector();
 
@@ -191,7 +191,7 @@ mat3::mat3(mat4 mat4){
 	}
 
 
-	mat4 perspective(float fov, float aspectRatio, float near = 0.1, float far = 100.0f)
+	mat4 perspective(float fov, float aspectRatio, float near, float far)
 	{
 		mat4 result;
 		float scale = 1.0 / tan(to_radians(45 / 2.0));
