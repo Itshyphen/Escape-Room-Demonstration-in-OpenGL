@@ -2,10 +2,10 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-// GLM Mathemtics
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
+// // GLM Mathemtics
+// #include <glm/glm.hpp>
+// #include <glm/gtc/matrix_transform.hpp>
+// #include <glm/gtc/type_ptr.hpp>
 
 #include "camera.hpp"
 #include "model.hpp"
@@ -28,6 +28,7 @@ namespace visualisation
         vector<VecMat::vec3> modelPosition;
         vector<VecMat::vec3> modelRotationVector;
         vector<VecMat::vec3> modelScale;
+        vector<string> modelname;
         vector<double> modelAngle;
         vector<Model> models;
         vector<VecMat::vec3> lampPosition;
@@ -89,6 +90,7 @@ void visualisation::render::getModels()
         modelScale.push_back(room->children[i]->getScale());
         modelAngle.push_back(room->children[i]->getAngle());
         modelRotationVector.push_back(room->children[i]->getRotationVector());
+        modelname.push_back(room->children[i]->getName());
         Model model(room->children[i]->getModelName());
         models.push_back(model);
     }
@@ -385,9 +387,21 @@ void visualisation::render::visualise()
         for (int i = 0; i < models.size(); ++i)
         {
             VecMat::mat4 modelObject = VecMat::mat4(1.0f);
-            modelObject = VecMat::translate(modelObject, modelPosition[i]); // Translate it down a bit so it's at the center of the scene
-            modelObject = VecMat::rotate(modelObject, to_radians((float)modelAngle[i]), VecMat::vec3(0.0f, 1.0f, 0.0f));
-            modelObject = VecMat::scale(modelObject, modelScale[i]); // It's a bit too big for our scene, so scale it down
+            if (modelname[i] == "door" and opendoor == true)
+            {
+                modelObject = VecMat::translate(modelObject, VecMat::vec3(-4.5,0.0,0.75)); // Translate it down a bit so it's at the center of the scene
+                modelObject = VecMat::rotate(modelObject, to_radians(80.0f), VecMat::vec3(0.0f, 1.0f, 0.0f));
+                modelObject = VecMat::scale(modelObject, modelScale[i]); 
+            }
+            else
+            {
+
+                modelObject = VecMat::translate(modelObject, modelPosition[i]); // Translate it down a bit so it's at the center of the scene
+                modelObject = VecMat::rotate(modelObject, to_radians((float)modelAngle[i]), VecMat::vec3(0.0f, 1.0f, 0.0f));
+                modelObject = VecMat::scale(modelObject, modelScale[i]); 
+            }
+
+            // It's a bit too big for our scene, so scale it down
             ourShader.setMat4("model", modelObject);
             models[i].Draw(ourShader);
             cout << "Drawing Objects in the room" << endl;
@@ -401,9 +415,6 @@ void visualisation::render::visualise()
             model = VecMat::rotate(model, to_radians(90.0f), VecMat::vec3(0.0f, 1.0f, 0.0f));
             model = VecMat::scale(model, VecMat::vec3(0.03f, 0.05f, 1.8f)); // a smaller cube
             lampShader.setMat4("model", model);
-            //    glm::vec3 ml(model);
-            //    glm::mat4 m = glm::translate(camera.Position,ml)
-            //    printf("%s\n", (camera.Position).c_str());
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
 
@@ -469,6 +480,8 @@ void processInput(GLFWwindow *window)
         camera.ProcessKeyboard(DOWN, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS)
         opendoor = true;
+    if (glfwGetKey(window, GLFW_KEY_O) == GLFW_RELEASE)
+        opendoor = false;
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
