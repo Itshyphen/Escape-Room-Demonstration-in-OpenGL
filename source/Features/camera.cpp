@@ -39,8 +39,12 @@
 
     VecMat::mat4 Camera:: GetViewMatrix()
     {
-        return VecMat::lookAt(Position, Position + Front, Up);
+        return VecMat::lookAt(Position, propPosition, Up);
     }
+
+    void Camera::setPropPosition(VecMat::vec3 pos) {
+    propPosition = pos;
+}
 
     // processes input received from any keyboard-like input system. Accepts input parameter in the form of camera defined ENUM (to abstract it from windowing systems)
     void Camera:: ProcessKeyboard(Camera_Movement direction, float deltaTime)

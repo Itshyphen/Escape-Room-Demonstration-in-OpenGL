@@ -50,10 +50,6 @@ public:
     void setVec2(const std::string &name, const VecMat::vec2 value) const;
     void setVec3(const std::string &name, const VecMat::vec3 value) const;
     void setMat3(const std::string &name, const VecMat::mat3 mat) const;
-  
-
-
-    
 
     private:
     // the program ID

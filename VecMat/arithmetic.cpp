@@ -31,6 +31,14 @@ mat3::mat3(mat4 mat4){
 		return result;
 	}
 
+	vec3 operator -(vec3 a, vec3 b) {
+    vec3 result;
+    result.x = a.x - b.x;
+    result.y = a.y - b.y;
+    result.z = a.z - b.z;
+    return result;
+}
+
 
 	mat4 translate(const mat4& mat, float tx, float ty, float tz) {
 		mat4 result = mat;

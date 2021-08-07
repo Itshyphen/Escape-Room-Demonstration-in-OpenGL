@@ -18,6 +18,7 @@
 namespace visualisation
 {
 
+
     class render
     {
     private:
@@ -33,6 +34,7 @@ namespace visualisation
         vector<Model> models;
         vector<VecMat::vec3> lampPosition;
         vector<VecMat::vec3> lightPosition;
+
         double w;
         double l;
         double h;
@@ -184,13 +186,15 @@ float skyboxVertices[] = {
     1.0f, -1.0f, -1.0f,
     -1.0f, -1.0f, 1.0f,
     1.0f, -1.0f, 1.0f};
-vector<std::string> faces{
-    "../resources/sky/right.jpg",
-    "../resources/sky/left.jpg",
-    "../resources/sky/top.jpg",
-    "../resources/sky/bottom.jpg",
-    "../resources/sky/back.jpg",
-    "../resources/sky/front.jpg"};
+ vector<std::string> faces{
+     "../resources/skybox/rigwht.jpg",
+     "../resources/sky/lefwt.jpg",
+     "../resources/sky/towp.jpg",
+     "../resources/sky/botwtom.jpg",
+     "../resources/sky/bacwk.jpg",
+     "../resources/sky/fronwt.jpg"};
+
+ VecMat::vec3 propPosition;
 
 void visualisation::render::initializeGlfw()
 {
@@ -273,6 +277,8 @@ void visualisation::render::setLightPosition()
 
     lightPosition.push_back(VecMat::vec3(3.55, 2.1, -4.6));
     lightPosition.push_back(VecMat::vec3(0, 40, 0));
+
+    propPosition = VecMat::vec3(0,4,0);
 }
 void visualisation::render::visualise()
 {
@@ -381,6 +387,7 @@ void visualisation::render::visualise()
         ourShader.setMat4("projection", projection);
         ourShader.setMat4("view", view);
 
+
         //Draw the models
         ourShader.setMat4("projection", projection);
         ourShader.setMat4("view", view);
@@ -404,8 +411,16 @@ void visualisation::render::visualise()
             // It's a bit too big for our scene, so scale it down
             ourShader.setMat4("model", modelObject);
             models[i].Draw(ourShader);
-            cout << "Drawing Objects in the room" << endl;
+//            cout << "Drawing Objects in the room" << endl;
         }
+
+        Model model("../resources/models/Candle/box.obj");
+        VecMat::mat4 candle(1.0);
+        candle = VecMat::translate(candle,propPosition);
+        ourShader.setMat4("model", candle);
+        model.Draw(ourShader);
+
+        camera.setPropPosition(propPosition);
 
         //light objects
         for (unsigned int i = 0; i < 2; i++)
@@ -467,17 +482,23 @@ void processInput(GLFWwindow *window)
         glfwSetWindowShouldClose(window, true);
 
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        camera.ProcessKeyboard(FORWARD, deltaTime);
+//        camera.ProcessKeyboard(FORWARD, deltaTime);
+propPosition = propPosition+VecMat::vec3(0,0,-0.1);
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-        camera.ProcessKeyboard(BACKWARD, deltaTime);
+//        camera.ProcessKeyboard(BACKWARD, deltaTime);
+        propPosition = propPosition+VecMat::vec3(0,0,0.1);
     if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-        camera.ProcessKeyboard(LEFT, deltaTime);
+//        camera.ProcessKeyboard(LEFT, deltaTime);
+        propPosition = propPosition+VecMat::vec3(-0.1,0,0);
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-        camera.ProcessKeyboard(RIGHT, deltaTime);
+//        camera.ProcessKeyboard(RIGHT, deltaTime);
+        propPosition = propPosition+VecMat::vec3(0.1,0,0);
     if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS)
-        camera.ProcessKeyboard(UP, deltaTime);
+//        camera.ProcessKeyboard(UP, deltaTime);
+        propPosition = propPosition+VecMat::vec3(0,0.1,0);
     if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS)
-        camera.ProcessKeyboard(DOWN, deltaTime);
+//        camera.ProcessKeyboard(DOWN, deltaTime);
+        propPosition = propPosition+VecMat::vec3(0,-0.1,0);
     if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS)
         opendoor = true;
     if (glfwGetKey(window, GLFW_KEY_O) == GLFW_RELEASE)

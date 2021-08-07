@@ -192,6 +192,8 @@ namespace VecMat {
 
 	mat4 operator *(mat4 a, mat4 b);
 
+	 vec3 operator -(vec3 a, vec3 b);
+
 	mat4 translate(const mat4& mat, float tx, float ty, float tz);
 
 	mat4 translate(const mat4& mat, vec3 vec);
