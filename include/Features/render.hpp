@@ -14,6 +14,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <ctime>
 
 namespace visualisation
 {
@@ -65,7 +66,7 @@ const unsigned int SCR_HEIGHT = 720;
 bool opendoor = false;
 
 // camera
-Camera camera(VecMat::vec3(0.0f, 5.0f, 20.0f));
+Camera camera(VecMat::vec3(4.0f, 6.0f, 4.0f));
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
@@ -195,6 +196,7 @@ float skyboxVertices[] = {
      "../resources/sky/fronwt.jpg"};
 
  VecMat::vec3 propPosition;
+ bool nightmode = false;
 
 void visualisation::render::initializeGlfw()
 {
@@ -226,6 +228,8 @@ void visualisation::render::initializeGlfw()
     }
 
     glEnable(GL_DEPTH_TEST);
+//    glDepthMask(GL_FALSE);
+
 
     cout << "WINDOW CREATED!" << endl;
 }
@@ -278,7 +282,7 @@ void visualisation::render::setLightPosition()
     lightPosition.push_back(VecMat::vec3(3.55, 2.1, -4.6));
     lightPosition.push_back(VecMat::vec3(0, 40, 0));
 
-    propPosition = VecMat::vec3(0,4,0);
+    camera.setPropPosition(VecMat::vec3(2,2.,2.));
 }
 void visualisation::render::visualise()
 {
@@ -309,6 +313,9 @@ void visualisation::render::visualise()
     skyboxShader.Bind();
     skyboxShader.setInt("skybox", 0);
 
+    Model model("../resources/models/Candle/box.obj");
+
+
     // render loop
     // -----------
     while (!glfwWindowShouldClose(window))
@@ -333,41 +340,77 @@ void visualisation::render::visualise()
         ourShader.setFloat("material.shininess", 32.0f);
         // light properties
         ourShader.setVec3("dirLight.direction", -0.2f, -1.0f, -0.3f);
-        ourShader.setVec3("dirLight.ambient", 0.05f, 0.05f, 0.05f);
-        ourShader.setVec3("dirLight.diffuse", 0.4f, 0.4f, 0.4f);
+        ourShader.setVec3("dirLight.ambient", 0.00001f, 0.00001f, 0.001f);
+        ourShader.setVec3("dirLight.diffuse", 0.0f, 0.0f, 0.0f);
         ourShader.setVec3("dirLight.specular", 0.5f, 0.5f, 0.5f);
-        // point light 1
-        ourShader.setVec3("pointLights[0].position", lightPosition[0]);
-        ourShader.setVec3("pointLights[0].ambient", 0.05f, 0.05f, 0.05f);
-        ourShader.setVec3("pointLights[0].diffuse", 0.8f, 0.8f, 0.8f);
-        ourShader.setVec3("pointLights[0].specular", 1.0f, 1.0f, 1.0f);
-        ourShader.setFloat("pointLights[0].constant", 1.0f);
-        ourShader.setFloat("pointLights[0].linear", 0.09);
-        ourShader.setFloat("pointLights[0].quadratic", 0.032);
-        // point light 2
-        ourShader.setVec3("pointLights[1].position", lightPosition[1]);
-        ourShader.setVec3("pointLights[1].ambient", 0.05f, 0.05f, 0.05f);
-        ourShader.setVec3("pointLights[1].diffuse", 0.8f, 0.8f, 0.8f);
-        ourShader.setVec3("pointLights[1].specular", 1.0f, 1.0f, 1.0f);
-        ourShader.setFloat("pointLights[1].constant", 1.0f);
-        ourShader.setFloat("pointLights[1].linear", 0.09);
-        ourShader.setFloat("pointLights[1].quadratic", 0.032);
-        // // point light 2
-        ourShader.setVec3("pointLights[2].position", lightPosition[2]);
-        ourShader.setVec3("pointLights[2].ambient", 0.05f, 0.05f, 0.05f);
-        ourShader.setVec3("pointLights[2].diffuse", 1.0f, 1.0f, 0.5f);
-        ourShader.setVec3("pointLights[2].specular", 1.0f, 1.0f, 1.0f);
-        ourShader.setFloat("pointLights[2].constant", 1.0f);
-        ourShader.setFloat("pointLights[2].linear", 0.09);
-        ourShader.setFloat("pointLights[2].quadratic", 0.032);
-        // // point light 3
-        ourShader.setVec3("pointLights[3].position", lightPosition[3]);
-        ourShader.setVec3("pointLights[3].ambient", 0.15f, 0.15f, 0.15f);
-        ourShader.setVec3("pointLights[3].diffuse", 0.8f, 0.8f, 0.8f);
-        ourShader.setVec3("pointLights[3].specular", 1.0f, 1.0f, 1.0f);
-        ourShader.setFloat("pointLights[3].constant", 0.01f);
-        ourShader.setFloat("pointLights[3].linear", 0.0004);
-        ourShader.setFloat("pointLights[3].quadratic", 0.0013);
+
+        if (nightmode == true){
+            // point light 1
+            ourShader.setVec3("pointLights[0].position", lightPosition[0]);
+            ourShader.setVec3("pointLights[0].ambient", 0.05f, 0.05f, 0.05f);
+            ourShader.setVec3("pointLights[0].diffuse", cos(time(nullptr)), 0.8f, sin(time(nullptr)));
+            ourShader.setVec3("pointLights[0].specular", 1.0f, 1.0f, 1.0f);
+            ourShader.setFloat("pointLights[0].constant", 1.0f);
+            ourShader.setFloat("pointLights[0].linear", 0.09);
+            ourShader.setFloat("pointLights[0].quadratic", 0.032);
+            // point light 2
+            ourShader.setVec3("pointLights[1].position", lightPosition[1]);
+            ourShader.setVec3("pointLights[1].ambient", 0.05f, 0.05f, 0.05f);
+            ourShader.setVec3("pointLights[1].diffuse", sin(time(nullptr)), 0.8f, cos(time(nullptr)));
+            ourShader.setVec3("pointLights[1].specular", 1.0f, 1.0f, 1.0f);
+            ourShader.setFloat("pointLights[1].constant", 1.0f);
+            ourShader.setFloat("pointLights[1].linear", 0.09);
+            ourShader.setFloat("pointLights[1].quadratic", 0.032);
+            // // point light 2
+            ourShader.setVec3("pointLights[2].position", lightPosition[2]);
+            ourShader.setVec3("pointLights[2].ambient", 0.05f, 0.05f, 0.05f);
+            ourShader.setVec3("pointLights[2].diffuse", sin(time(nullptr)), 0.8f, cos(time(nullptr)));
+            ourShader.setVec3("pointLights[2].specular", 1.0f, 1.0f, 1.0f);
+            ourShader.setFloat("pointLights[2].constant", 1.0f);
+            ourShader.setFloat("pointLights[2].linear", 0.09);
+            ourShader.setFloat("pointLights[2].quadratic", 0.032);
+            // // point light 3
+            ourShader.setVec3("pointLights[3].position", lightPosition[3]);
+            ourShader.setVec3("pointLights[3].ambient", 0.15f, 0.15f, 0.15f);
+            ourShader.setVec3("pointLights[3].diffuse", 0.8f, 0.8f, 0.8f);
+            ourShader.setVec3("pointLights[3].specular", 1.0f, 1.0f, 1.0f);
+            ourShader.setFloat("pointLights[3].constant", 0.01f);
+            ourShader.setFloat("pointLights[3].linear", 0.0004);
+            ourShader.setFloat("pointLights[3].quadratic", 0.0013);
+        }
+        else { // point light 1
+            ourShader.setVec3("pointLights[0].position", lightPosition[0]);
+            ourShader.setVec3("pointLights[0].ambient", 0.05f, 0.05f, 0.05f);
+            ourShader.setVec3("pointLights[0].diffuse", 0.8f, 0.8f, 0.8f);
+            ourShader.setVec3("pointLights[0].specular", 1.0f, 1.0f, 1.0f);
+            ourShader.setFloat("pointLights[0].constant", 1.0f);
+            ourShader.setFloat("pointLights[0].linear", 0.09);
+            ourShader.setFloat("pointLights[0].quadratic", 0.032);
+            // point light 2
+            ourShader.setVec3("pointLights[1].position", lightPosition[1]);
+            ourShader.setVec3("pointLights[1].ambient", 0.05f, 0.05f, 0.05f);
+            ourShader.setVec3("pointLights[1].diffuse", 0.8f, 0.8f, 0.8f);
+            ourShader.setVec3("pointLights[1].specular", 1.0f, 1.0f, 1.0f);
+            ourShader.setFloat("pointLights[1].constant", 1.0f);
+            ourShader.setFloat("pointLights[1].linear", 0.09);
+            ourShader.setFloat("pointLights[1].quadratic", 0.032);
+            // // point light 2
+            ourShader.setVec3("pointLights[2].position", lightPosition[2]);
+            ourShader.setVec3("pointLights[2].ambient", 0.05f, 0.05f, 0.05f);
+            ourShader.setVec3("pointLights[2].diffuse", 1.0f, 1.0f, 0.5f);
+            ourShader.setVec3("pointLights[2].specular", 1.0f, 1.0f, 1.0f);
+            ourShader.setFloat("pointLights[2].constant", 1.0f);
+            ourShader.setFloat("pointLights[2].linear", 0.09);
+            ourShader.setFloat("pointLights[2].quadratic", 0.032);
+            // // point light 3
+            ourShader.setVec3("pointLights[3].position", lightPosition[3]);
+            ourShader.setVec3("pointLights[3].ambient", 0.15f, 0.15f, 0.15f);
+            ourShader.setVec3("pointLights[3].diffuse", 0.8f, 0.8f, 0.8f);
+            ourShader.setVec3("pointLights[3].specular", 1.0f, 1.0f, 1.0f);
+            ourShader.setFloat("pointLights[3].constant", 0.01f);
+            ourShader.setFloat("pointLights[3].linear", 0.0004);
+            ourShader.setFloat("pointLights[3].quadratic", 0.0013);
+        }
 
         ourShader.Bind();
 
@@ -414,9 +457,9 @@ void visualisation::render::visualise()
 //            cout << "Drawing Objects in the room" << endl;
         }
 
-        Model model("../resources/models/Candle/box.obj");
         VecMat::mat4 candle(1.0);
-        candle = VecMat::translate(candle,propPosition);
+        candle = VecMat::translate(candle,camera.Position+VecMat::normalize(camera.Front)*0.1);
+        candle = VecMat::scale(candle,VecMat::vec3(0.01,0.01,0.01));
         ourShader.setMat4("model", candle);
         model.Draw(ourShader);
 
@@ -482,27 +525,39 @@ void processInput(GLFWwindow *window)
         glfwSetWindowShouldClose(window, true);
 
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-//        camera.ProcessKeyboard(FORWARD, deltaTime);
-propPosition = propPosition+VecMat::vec3(0,0,-0.1);
-    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-//        camera.ProcessKeyboard(BACKWARD, deltaTime);
-        propPosition = propPosition+VecMat::vec3(0,0,0.1);
-    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-//        camera.ProcessKeyboard(LEFT, deltaTime);
-        propPosition = propPosition+VecMat::vec3(-0.1,0,0);
-    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-//        camera.ProcessKeyboard(RIGHT, deltaTime);
-        propPosition = propPosition+VecMat::vec3(0.1,0,0);
-    if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS)
-//        camera.ProcessKeyboard(UP, deltaTime);
-        propPosition = propPosition+VecMat::vec3(0,0.1,0);
-    if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS)
-//        camera.ProcessKeyboard(DOWN, deltaTime);
-        propPosition = propPosition+VecMat::vec3(0,-0.1,0);
+    {
+        camera.ProcessKeyboard(FORWARD, deltaTime);
+        propPosition = propPosition+VecMat::vec3(0,0,-0.1);
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
+        camera.ProcessKeyboard(BACKWARD, deltaTime);
+        propPosition = propPosition + VecMat::vec3(0, 0, 0.1);
+    }
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+        camera.ProcessKeyboard(LEFT, deltaTime);
+        propPosition = propPosition + VecMat::vec3(-0.1, 0, 0);
+    }
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
+        camera.ProcessKeyboard(RIGHT, deltaTime);
+        propPosition = propPosition + VecMat::vec3(0.1, 0, 0);
+    }
+    if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS) {
+        camera.ProcessKeyboard(UP, deltaTime);
+        propPosition = propPosition + VecMat::vec3(0, 0.1, 0);
+    }
+    if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS) {
+        camera.ProcessKeyboard(DOWN, deltaTime);
+        propPosition = propPosition + VecMat::vec3(0, -0.1, 0);
+    }
     if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS)
         opendoor = true;
     if (glfwGetKey(window, GLFW_KEY_O) == GLFW_RELEASE)
         opendoor = false;
+    if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+        camera.ProcessKeyboard(BACKWARD, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+        camera.ProcessKeyboard(FORWARD, deltaTime);
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes

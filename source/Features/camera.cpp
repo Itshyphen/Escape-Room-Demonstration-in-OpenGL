@@ -13,7 +13,7 @@
 //         updateCameraVectors();
 //     }
 //COnstructor with VecMat library
-     Camera::Camera(VecMat::vec3 position , VecMat::vec3 up , float yaw, float pitch) : Front(VecMat::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
+     Camera::Camera(VecMat::vec3 position , VecMat::vec3 up , float yaw, float pitch) : Front(VecMat::vec3(-20.0f, -20.0f, -20.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
     {
         Position = position;
         WorldUp = up;
@@ -22,7 +22,7 @@
         updateCameraVectors();
     }
     // constructor with scalar values
-    Camera::Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch) : Front(VecMat::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
+    Camera::Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch) : Front(VecMat::vec3(-4.0f, -4.0f, -4.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
     {
         Position = VecMat::vec3(posX, posY, posZ);
         WorldUp = VecMat::vec3(upX, upY, upZ);
@@ -32,37 +32,79 @@
     }
 
     // returns the view matrix calculated using Euler Angles and the LookAt Matrix
-    // glm::mat4 Camera:: GetViewMatrix()
-    // {
-    //     return glm::lookAt(Position, Position + Front, Up);
-    // }
+     VecMat::mat4 Camera:: GetViewMatrix()
+     {
+         return VecMat::lookAt(Position, Position + Front, Up);
+     }
 
-    VecMat::mat4 Camera:: GetViewMatrix()
-    {
-        return VecMat::lookAt(Position, propPosition, Up);
-    }
+//    VecMat::mat4 Camera:: GetViewMatrix()
+//    {
+//        return VecMat::lookAt(Position+propPosition-1, propPosition, Up);
+//    }
 
     void Camera::setPropPosition(VecMat::vec3 pos) {
     propPosition = pos;
 }
 
-    // processes input received from any keyboard-like input system. Accepts input parameter in the form of camera defined ENUM (to abstract it from windowing systems)
+VecMat::vec3 Camera::getPropPosition( ) {
+    return propPosition;
+}
+
+//     processes input received from any keyboard-like input system. Accepts input parameter in the form of camera defined ENUM (to abstract it from windowing systems)
     void Camera:: ProcessKeyboard(Camera_Movement direction, float deltaTime)
     {
-        float velocity = MovementSpeed * deltaTime;
-        if (direction == FORWARD)
-            Position += Front * velocity;
-        if (direction == BACKWARD)
-            Position -= Front * velocity;
-        if (direction == LEFT)
-            Position -= Right * velocity;
-        if (direction == RIGHT)
-            Position += Right * velocity;
-        if (direction == UP)
-            Position += WorldUp * velocity;
-        if (direction == DOWN)
-            Position -= WorldUp * velocity;
+        float velocity = -0.05;
+        if(Position+Front<=VecMat::vec3(4.4,7.0,5.2) and Position+Front>VecMat::vec3(-4.0,1.5,-4.9)) {
+            velocity = 0.5 * deltaTime;
+        }
+            if (direction == FORWARD) {
+                Position += Front * velocity;
+                propPosition += Front * velocity;
+            }
+            if (direction == BACKWARD) {
+                Position -= Front * velocity;
+                propPosition -= Front * velocity;
+            }
+            if (direction == LEFT) {
+                Position -= Right * velocity;
+                propPosition -= Right * velocity;
+            }
+            if (direction == RIGHT) {
+                Position += Right * velocity;
+                propPosition += Right * velocity;
+
+            }
+            if (direction == UP) {
+                Position += WorldUp * velocity;
+                propPosition += WorldUp * velocity;
+
+            }
+            if (direction == DOWN) {
+                Position -= WorldUp * velocity;
+                propPosition -= WorldUp * velocity;
+
+            }
+
+        propPosition.display();
     }
+//
+//void Camera:: ProcessKeyboard(Camera_Movement direction, float deltaTime)
+//{
+//    float velocity = MovementSpeed * deltaTime;
+//    std::cout<<MovementSpeed<<std::endl;
+//    if (direction == FORWARD)
+//        Position += VecMat::vec3(0,0,-0.1) ;
+//    if (direction == BACKWARD)
+//        Position = VecMat::vec3(0,0,0.1) ;
+//    if (direction == LEFT)
+//        Position = VecMat::vec3(-0.1,0,0.0);
+//    if (direction == RIGHT)
+//        Position = VecMat::vec3(0.1,0,0) ;
+//    if (direction == UP)
+//        Position = VecMat::vec3(0,0.1,0) ;
+//    if (direction == DOWN)
+//        Position = VecMat::vec3(0,-0.1,0) ;
+//}
 
     // processes input received from a mouse input system provided the offset value in both the x and y direction.
     void Camera:: ProcessMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch)
@@ -112,11 +154,16 @@
         void Camera:: updateCameraVectors()
     {
         // calculate the new Front vector
+
+
         VecMat::vec3 front;
         front.x = cos(to_radians(Yaw)) * cos(to_radians(Pitch));
         front.y = sin(to_radians(Pitch));
         front.z = sin(to_radians(Yaw)) * cos(to_radians(Pitch));
-        Front = VecMat::normalize(front);
+        if(Position+VecMat::normalize(front)<=VecMat::vec3(4.4,7.0,5.2) and Position+VecMat::normalize(front)>VecMat::vec3(-4.0,1.5,-4.64))
+        {
+            Front = VecMat::normalize(front);
+        }
         
         Right = VecMat::normalize(VecMat::cross(Front, WorldUp));  // normalize the vectors, because their length gets closer to 0 the more you look up or down which results in slower movement.
         Up    = VecMat::normalize(VecMat::cross(Right, Front));

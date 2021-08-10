@@ -1,5 +1,6 @@
 #pragma once
 #include <cmath>
+#include <iostream>
 
 #define PI 3.141519
 
@@ -47,6 +48,13 @@ namespace VecMat {
 		inline vec3 operator +(const vec3& v) const{
 			return vec3(x + v.x, y + v.y, z + v.z);
 		}
+		inline bool operator <=(const vec3& v) const{
+		    return (x<=v.x and y<=v.y and z<=v.z);
+		}
+
+		inline bool operator >(const vec3& v) const{
+		    return (x>v.x and y>v.y and z>v.z);
+		}
 
 		inline vec3 operator +(float v) const{
 			return vec3(x + v, y + v, z + v);
@@ -54,6 +62,9 @@ namespace VecMat {
 
 		inline vec3 operator -(const vec3& v) const{
 			return vec3(x - v.x, y - v.y, z - v.z);
+		}
+		inline void display(){
+		    std::cout<<x<<", "<<y<<", "<<z<<std::endl;
 		}
 
 		inline vec3 operator -(float v) const{
