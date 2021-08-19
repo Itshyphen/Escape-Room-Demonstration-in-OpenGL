@@ -375,7 +375,7 @@ void visualisation::render::visualise()
             ourShader.setFloat("pointLights[1].quadratic", 0.032);
             // // point light 2
             VecMat::vec3 candlePos =camera.Position+VecMat::normalize(camera.Front)*0.1;
-            ourShader.setVec3("pointLights[2].position",lightPosition[1]);
+            ourShader.setVec3("pointLights[2].position",VecMat::vec3(candlePos.x,candlePos.y+0.02,candlePos.z));
             ourShader.setVec3("pointLights[2].ambient", 0.00005f, 0.00005f, 0.00005f);
             ourShader.setVec3("pointLights[2].diffuse", 1.0f, 1.0f, 0.5f);
             ourShader.setVec3("pointLights[2].specular", 1.0f, 1.0f, 1.0f);

@@ -1,5 +1,5 @@
 # Blender MTL File: 'room4walls.blend'
-# Material Count: 76
+# Material Count: 71
 
 newmtl 1
 Ns 225.000000
@@ -61,17 +61,6 @@ newmtl BlueClue
 Ns 225.000000
 Ka 1.000000 1.000000 1.000000
 Kd 1.000000 0.000000 0.000000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.450000
-d 1.000000
-illum 2
-map_Kd /Pictures/blue.jpeg
-
-newmtl BlueClue.001
-Ns 225.000000
-Ka 1.000000 1.000000 1.000000
-Kd 0.000000 1.000000 0.000000
 Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
 Ni 1.450000
@@ -167,17 +156,6 @@ d 1.000000
 illum 2
 map_Kd /Pictures/decoration.jpg
 
-newmtl Door.001
-Ns 225.000000
-Ka 1.000000 1.000000 1.000000
-Kd 0.479320 0.407240 0.327778
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.450000
-d 1.000000
-illum 2
-map_Kd /Pictures/cream-wall.jpg
-
 newmtl Doorframe.001
 Ns 225.000000
 Ka 1.000000 1.000000 1.000000
@@ -226,17 +204,6 @@ newmtl GreenClue
 Ns 225.000000
 Ka 1.000000 1.000000 1.000000
 Kd 1.000000 0.000000 0.000000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.450000
-d 1.000000
-illum 2
-map_Kd /Pictures/green.jpg
-
-newmtl GreenClue.001
-Ns 225.000000
-Ka 1.000000 1.000000 1.000000
-Kd 0.000000 1.000000 0.000000
 Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
 Ni 1.450000
@@ -342,6 +309,17 @@ Ni 1.450000
 d 1.000000
 illum 2
 map_Kd /Pictures/darkwood.jpg
+
+newmtl Material.005
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd /Pictures/grass.jpeg
 
 newmtl Material.007
 Ns 225.000000
@@ -604,17 +582,6 @@ d 1.000000
 illum 2
 map_Kd /Pictures/red.jpeg
 
-newmtl RedClue.001
-Ns 225.000000
-Ka 1.000000 1.000000 1.000000
-Kd 0.000000 1.000000 0.000000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.450000
-d 1.000000
-illum 2
-map_Kd /Pictures/red.jpeg
-
 newmtl SlateGrey
 Ns 225.000000
 Ka 1.000000 1.000000 1.000000
@@ -679,17 +646,6 @@ Ni 1.450000
 d 1.000000
 illum 2
 map_Kd /Pictures/door.jpg
-
-newmtl YellowClue
-Ns 225.000000
-Ka 1.000000 1.000000 1.000000
-Kd 0.000000 1.000000 0.000000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.450000
-d 1.000000
-illum 2
-map_Kd /Pictures/yellow.jpeg
 
 newmtl YellowClue.001
 Ns 225.000000
@@ -778,17 +734,6 @@ Ni 1.450000
 d 1.000000
 illum 2
 map_Kd /Pictures/yellowcarpet.jpg
-
-newmtl doorknob
-Ns 225.000000
-Ka 1.000000 1.000000 1.000000
-Kd 0.009134 0.009134 0.009134
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.450000
-d 1.000000
-illum 2
-map_Kd /Pictures/doorknob.jpg
 
 newmtl greenbook
 Ns 225.000000
