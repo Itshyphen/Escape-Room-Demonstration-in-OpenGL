@@ -454,7 +454,7 @@ void visualisation::render::visualise()
         for (int i = 0; i < models.size(); ++i)
         {
             VecMat::mat4 modelObject = VecMat::mat4(1.0f);
-            if (modelname[i] == "door" and opendoor == true)
+            if (modelname[i] == "door" && opendoor == true)
             {
                 modelObject = VecMat::translate(modelObject, VecMat::vec3(-4.5,0.0,0.75)); // Translate it down a bit so it's at the center of the scene
                 modelObject = VecMat::rotate(modelObject, to_radians(80.0f), VecMat::vec3(0.0f, 1.0f, 0.0f));
