@@ -1,7 +1,7 @@
-// #include <iostream>
+// #includes <iostream>
 
-// #include "texture.hpp"
-// #include "stb_image.h"
+// #includes "texture.hpp"
+// #includes "stb_image.h"
 
 // Texture::Texture(const std::string &path, const char *type)
 // // {

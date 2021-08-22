@@ -83,12 +83,12 @@ private:
 };
 
 // //...
-// #include <glad/glad.h>
-// #include <glm/glm.hpp>
-// #include <glm/gtc/matrix_transform.hpp>
+// #includes <glad/glad.h>
+// #includes <glm/glm.hpp>
+// #includes <glm/gtc/matrix_transform.hpp>
 
-// #include <arithmetic.hpp>
-// #include <vector>
+// #includes <arithmetic.hpp>
+// #includes <vector>
 
 // // Defines several possible options for camera movement. Used as abstraction to stay away from window-system specific input methods
 // enum Camera_Movement {
