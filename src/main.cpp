@@ -56,13 +56,13 @@ int main()
     return 0;
 }
 
-// #include<iostream>
-// #include <matrix.hpp>
-// #include<cmath>
+// #includes<iostream>
+// #includes <matrix.hpp>
+// #includes<cmath>
 
-// #include <glm/glm.hpp>
-// #include <glm/gtc/matrix_transform.hpp>
-// #include <glm/gtc/type_ptr.hpp>
+// #includes <glm/glm.hpp>
+// #includes <glm/gtc/matrix_transform.hpp>
+// #includes <glm/gtc/type_ptr.hpp>
 
 
 // int main()
