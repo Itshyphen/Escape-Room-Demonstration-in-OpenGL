@@ -197,7 +197,11 @@ float skyboxVertices[] = {
      "../resources/sky/fronwt.jpg"};
 
  VecMat::vec3 propPosition;
- bool nightmode = true;
+ bool nightmode =  false;
+ bool yellowcard = false;
+ bool bluecard =  false ;
+ bool  redcard =  false ;
+ bool  greencard =  false ;
 
 void visualisation::render::initializeGlfw()
 {
@@ -480,7 +484,11 @@ candle = VecMat::translate(candle,VecMat::vec3(candlePos.x,candlePos.y-0.02,cand
         model.Draw(ourShader);
 
         camera.setPropPosition(propPosition);
-
+        std::cout<<candlePos.x<<","<<candlePos.y-0.02<<","<<candlePos.z<<std::endl;
+        if(bluecard || redcard || greencard || yellowcard)
+        {
+            std::cout<<bluecard<<","<<redcard<<","<<greencard<<","<<yellowcard<< std::endl;
+        }
         //light objects
         for (unsigned int i = 0; i < 2; i++)
         {
@@ -574,7 +582,32 @@ void processInput(GLFWwindow *window)
         camera.ProcessKeyboard(BACKWARD, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
         camera.ProcessKeyboard(FORWARD, deltaTime);
+
+    if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+    {
+        //greencard = !greencard;
+        VecMat::vec3 candlePos = camera.Position + VecMat::normalize(camera.Front) * 0.1;
+
+        if ((-3.74 < candlePos.x && candlePos.x < -3.3) && ((0.16 < (candlePos.y - 0.02)) && ((candlePos.y - 0.02) < 0.38)) && (-3.56 < candlePos.z) && (candlePos.z < -3.2))
+        {
+            cout<<"Test"<<endl;
+            bluecard = true;
+        }
+        if ((3.3 < candlePos.x && candlePos.x < 3.9) && ((0.9 < (candlePos.y - 0.02)) && ((candlePos.y - 0.02) < 1.2)) && (-4.4 < candlePos.z) && (candlePos.z < -3.9))
+        {
+            redcard = true;
+        }
+        if ((-3.6 < candlePos.x && candlePos.x < -3.0) && ((4.4 < (candlePos.y - 0.02)) && ((candlePos.y - 0.02) < 5.2)) && (-5.2 < candlePos.z && candlePos.z < -4.4))
+        {
+            greencard = true;
+        }
+        if ((2.0 < candlePos.x && candlePos.x < 2.8) && ((0.6 < (candlePos.y - 0.02)) && ((candlePos.y - 0.02) < 1.2)) && (2.5 < candlePos.z && candlePos.z < 3.2))
+        {
+            yellowcard = true;
+        }
+    }
 }
+
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
 // ---------------------------------------------------------------------------------------------
@@ -619,7 +652,7 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
         double mouse_x, mouse_y;
         //getting cursor position
         glfwGetCursorPos(window, &mouse_x, &mouse_y);
-        cout << "Cursor Position at (" << mouse_x << " : " << mouse_y << endl;
+        cout << "Cursor Position at (" << mouse_x << " : " << mouse_y << ")"<<endl;
 
         //3D normalized device coordinates
         float x = (2.0f * mouse_x) / SCR_WIDTH - 1.0f;

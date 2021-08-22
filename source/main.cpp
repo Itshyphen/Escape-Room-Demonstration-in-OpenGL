@@ -16,41 +16,41 @@ int main()
         door->setAngle(0);
         door->setModelName("../resources/models/Door/door.obj");
 
-       auto card1 = new Object("card1");
-       card1->setPosition(0.0f,-7.5,0.0f);
-       card1->setScale(3.0f,3.0f,3.0f);
-       card1->setRotationVector(0,1,0);
-       card1->setAngle(0);
-       card1->setModelName("../resources/Room/windw.obj");
+       auto blueCard = new Object("blueCard");
+       blueCard->setPosition(-3.63f,0.35f,-3.28f);
+       blueCard->setScale(3.0f,3.0f,3.0f);
+       blueCard->setRotationVector(0,1,0);
+       blueCard->setAngle(45);
+       blueCard->setModelName("../resources/models/Room/blueC.obj");
 
-       auto card2 = new Object("card1");
-       card2->setPosition(0.0f,-7.5,0.0f);
-       card2->setScale(2.0f,2.0f,2.0f);
-       card2->setRotationVector(0,1,0);
-       card2->setAngle(0);
-       card2->setModelName("../resources/door/door.obj");
+       auto redCard = new Object("redCard");
+       redCard->setPosition(3.69f,1.16f,-4.17f);
+       redCard->setScale(3.0f,3.0f,3.0f);
+       redCard->setRotationVector(0,1,0);
+       redCard->setAngle(0);
+       redCard->setModelName("../resources/models/Room/redC.obj");
 
-       auto card3 = new Object("card1");
-       card3->setPosition(0.0f,-7.5,0.0f);
-       card3->setScale(2.0f,2.0f,2.0f);
-       card3->setRotationVector(0,1,0);
-       card3->setAngle(0);
-       card3->setModelName("../resources/door/door.obj");
+       auto greenCard = new Object("greenCard");
+       greenCard->setPosition(-3.36f,4.79f,-4.86f);
+       greenCard->setScale(3.0f,3.0f,3.0f);
+       greenCard->setRotationVector(0,1,0);
+       greenCard->setAngle(0);
+       greenCard->setModelName("../resources/models/Room/greenC.obj");
 
-       auto card4 = new Object("card1");
-       card4->setPosition(0.0f,-7.5,0.0f);
-       card4->setScale(2.0f,2.0f,2.0f);
-       card4->setRotationVector(0,1,0);
-       card4->setAngle(0);
-       card4->setModelName("../resources/door/door.obj");
+       auto yellowCard = new Object("yellowCard");
+       yellowCard->setPosition(2.30f,0.93f,2.87f);
+       yellowCard->setScale(3.0f,3.0f,3.0f);
+       yellowCard->setRotationVector(0,1,0);
+       yellowCard->setAngle(0);
+       yellowCard->setModelName("../resources/models/Room/yellowC.obj");
 
         auto room =new Object;
         room->addObject(roomObjects);
         room->addObject(door);
-       room->addObject(card1);
-       room->addObject(card2);
-       room->addObject(card3);
-       room->addObject(card4);
+       room->addObject(blueCard);
+       room->addObject(redCard);
+       room->addObject(greenCard);
+       room->addObject(yellowCard);
 
     visualisation::render render(room);
     return 0;
@@ -81,41 +81,41 @@ int main()
 //    //      door->setAngle(0);
 //    //      door->setModelName("../resources/models/Door/door.obj");
 
-//    //     auto card1 = new Object("card1");
-//    //     card1->setPosition(0.0f,-7.5,0.0f);
-//    //     card1->setScale(3.0f,3.0f,3.0f);
-//    //     card1->setRotationVector(0,1,0);
-//    //     card1->setAngle(0);
-//    //     card1->setModelName("../resources/Room/windw.obj");
+//    //     auto blueCard = new Object("blueCard");
+//    //     blueCard->setPosition(0.0f,-7.5,0.0f);
+//    //     blueCard->setScale(3.0f,3.0f,3.0f);
+//    //     blueCard->setRotationVector(0,1,0);
+//    //     blueCard->setAngle(0);
+//    //     blueCard->setModelName("../resources/Room/windw.obj");
 
-//    //     auto card2 = new Object("card1");
-//    //     card2->setPosition(0.0f,-7.5,0.0f);
-//    //     card2->setScale(2.0f,2.0f,2.0f);
-//    //     card2->setRotationVector(0,1,0);
-//    //     card2->setAngle(0);
-//    //     card2->setModelName("../resources/door/door.obj");
+//    //     auto redCard = new Object("blueCard");
+//    //     redCard->setPosition(0.0f,-7.5,0.0f);
+//    //     redCard->setScale(2.0f,2.0f,2.0f);
+//    //     redCard->setRotationVector(0,1,0);
+//    //     redCard->setAngle(0);
+//    //     redCard->setModelName("../resources/door/door.obj");
 
-//    //     auto card3 = new Object("card1");
-//    //     card3->setPosition(0.0f,-7.5,0.0f);
-//    //     card3->setScale(2.0f,2.0f,2.0f);
-//    //     card3->setRotationVector(0,1,0);
-//    //     card3->setAngle(0);
-//    //     card3->setModelName("../resources/door/door.obj");
+//    //     auto greenCard = new Object("blueCard");
+//    //     greenCard->setPosition(0.0f,-7.5,0.0f);
+//    //     greenCard->setScale(2.0f,2.0f,2.0f);
+//    //     greenCard->setRotationVector(0,1,0);
+//    //     greenCard->setAngle(0);
+//    //     greenCard->setModelName("../resources/door/door.obj");
 
-//    //     auto card4 = new Object("card1");
-//    //     card4->setPosition(0.0f,-7.5,0.0f);
-//    //     card4->setScale(2.0f,2.0f,2.0f);
-//    //     card4->setRotationVector(0,1,0);
-//    //     card4->setAngle(0);
-//    //     card4->setModelName("../resources/door/door.obj");
+//    //     auto yellowCard = new Object("blueCard");
+//    //     yellowCard->setPosition(0.0f,-7.5,0.0f);
+//    //     yellowCard->setScale(2.0f,2.0f,2.0f);
+//    //     yellowCard->setRotationVector(0,1,0);
+//    //     yellowCard->setAngle(0);
+//    //     yellowCard->setModelName("../resources/door/door.obj");
 
 //    //      auto room =new Object;
 //    //      room->addObject(roomObjects);
 //    //      room->addObject(door);
-//    //     room->addObject(card1);
-//    //     room->addObject(card2);
-//    //     room->addObject(card3);
-//    //     room->addObject(card4);
+//    //     room->addObject(blueCard);
+//    //     room->addObject(redCard);
+//    //     room->addObject(greenCard);
+//    //     room->addObject(yellowCard);
 
 //    //  visualisation::render render(room);
 //             glm::mat4 p(1);
