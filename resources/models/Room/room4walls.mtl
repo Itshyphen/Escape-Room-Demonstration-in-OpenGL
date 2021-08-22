@@ -1,5 +1,5 @@
 # Blender MTL File: 'room4walls.blend'
-# Material Count: 71
+# Material Count: 66
 
 newmtl 1
 Ns 225.000000
@@ -57,17 +57,6 @@ d 1.000000
 illum 2
 map_Kd .
 
-newmtl BlueClue
-Ns 225.000000
-Ka 1.000000 1.000000 1.000000
-Kd 1.000000 0.000000 0.000000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.450000
-d 1.000000
-illum 2
-map_Kd /Pictures/blue.jpeg
-
 newmtl Brown
 Ns 225.000000
 Ka 1.000000 1.000000 1.000000
@@ -122,17 +111,6 @@ Ni 1.450000
 d 1.000000
 illum 2
 map_Kd /Pictures/decoration.jpg
-
-newmtl ClueNum
-Ns 225.000000
-Ka 1.000000 1.000000 1.000000
-Kd 1.000000 1.000000 1.000000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.450000
-d 1.000000
-illum 2
-map_Kd /Pictures/door.jpg
 
 newmtl DRawer1
 Ns 225.000000
@@ -199,17 +177,6 @@ Ni 1.450000
 d 1.000000
 illum 2
 map_Kd /Pictures/lamp.jpg
-
-newmtl GreenClue
-Ns 225.000000
-Ka 1.000000 1.000000 1.000000
-Kd 1.000000 0.000000 0.000000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.450000
-d 1.000000
-illum 2
-map_Kd /Pictures/green.jpg
 
 newmtl InnerBedSheet
 Ns 225.000000
@@ -571,17 +538,6 @@ Ni 1.000000
 d 1.000000
 illum 2
 
-newmtl RedClue
-Ns 225.000000
-Ka 1.000000 1.000000 1.000000
-Kd 1.000000 0.000000 0.000000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.450000
-d 1.000000
-illum 2
-map_Kd /Pictures/red.jpeg
-
 newmtl SlateGrey
 Ns 225.000000
 Ka 1.000000 1.000000 1.000000
@@ -646,17 +602,6 @@ Ni 1.450000
 d 1.000000
 illum 2
 map_Kd /Pictures/door.jpg
-
-newmtl YellowClue.001
-Ns 225.000000
-Ka 1.000000 1.000000 1.000000
-Kd 1.000000 0.000000 0.000000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.450000
-d 1.000000
-illum 2
-map_Kd /Pictures/yellow.jpeg
 
 newmtl bigbook
 Ns 225.000000
