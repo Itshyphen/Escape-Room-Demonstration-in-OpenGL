@@ -285,18 +285,18 @@ void visualisation::render::setLightPosition()
 {
     if(nightmode){
         VecMat::vec3 candlePos=camera.Position+VecMat::normalize(camera.Front)*0.1;
-        lightPosition.push_back(VecMat::vec3(50, 6, -5.1));
-        lightPosition.push_back(VecMat::vec3(-50, 6, -5.1));
+        lightPosition.emplace_back(50, 6, -5.1);
+        lightPosition.emplace_back(-50, 6, -5.1);
 
         lightPosition.push_back(candlePos);
-        lightPosition.push_back(VecMat::vec3(55, 40, 0));
+        lightPosition.emplace_back(55, 40, 0);
     }
     else {
-        lightPosition.push_back(VecMat::vec3(0.8, 6, -5.1));
-        lightPosition.push_back(VecMat::vec3(-0.8, 6, -5.1));
+        lightPosition.emplace_back(0.8, 6, -5.1);
+        lightPosition.emplace_back(-0.8, 6, -5.1);
 
-        lightPosition.push_back(VecMat::vec3(3.55, 2.1, -4.6));
-        lightPosition.push_back(VecMat::vec3(0, 40, 0));
+        lightPosition.emplace_back(3.55, 2.1, -4.6);
+        lightPosition.emplace_back(0, 40, 0);
     }
 
     camera.setPropPosition(VecMat::vec3(2,2.,2.));
@@ -461,7 +461,7 @@ void visualisation::render::visualise()
             {
                 modelObject = VecMat::translate(modelObject, VecMat::vec3(-4.5,0.0,0.75)); // Translate it down a bit so it's at the center of the scene
                 modelObject = VecMat::rotate(modelObject, to_radians(80.0f), VecMat::vec3(0.0f, 1.0f, 0.0f));
-                modelObject = VecMat::scale(modelObject, modelScale[i]); 
+                modelObject = VecMat::scale(modelObject, modelScale[i]);
             }
             else
             {
@@ -470,6 +470,9 @@ void visualisation::render::visualise()
 //                    modelObject = VecMat::translate(modelObject, modelPosition[i]);
                     modelPosition[i] = VecMat::vec3(-4.32, 3.66, 3.29);
                     modelAngle[i]=90.0f;
+                    if(!displaycard){
+                        modelPosition[i] = VecMat::vec3(100, 100, 100);
+                    }
 //                    modelScale[i]=VecMat::vec3(6, 6, 3);
 
                 }
@@ -477,16 +480,25 @@ void visualisation::render::visualise()
                 {
                     modelPosition[i] = VecMat::vec3(-4.32, 3.11, 3.29);
                     modelAngle[i]=90.0f;
+                    if(!displaycard){
+                        modelPosition[i] = VecMat::vec3(100, 100, 100);
+                    }
                 }
                 if (modelname[i] == "blueCard" && bluecard)
                 {
                     modelPosition[i] = VecMat::vec3(-4.32, 3.70, 4.42);
                     modelAngle[i]=90.0f;
+                    if(!displaycard){
+                        modelPosition[i] = VecMat::vec3(100, 100, 100);
+                    }
                 }
                 if (modelname[i] == "greenCard" && greencard)
                 {
                     modelPosition[i] = VecMat::vec3(-4.32, 3.09, 4.40);
                     modelAngle[i]=90.0f;
+                    if(!displaycard){
+                        modelPosition[i] = VecMat::vec3(100, 100, 100);
+                    }
                 }
 
                     modelObject = VecMat::translate(modelObject, modelPosition[i]); // Translate it down a bit so it's at the center of the scene

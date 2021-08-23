@@ -36,6 +36,7 @@ public:
 
     //Camera Attributes in VecMat
     VecMat::vec3 Position;
+    VecMat::vec3 prePosition;
     VecMat::vec3 Front;
     VecMat::vec3 Up;
     VecMat::vec3 Right;
