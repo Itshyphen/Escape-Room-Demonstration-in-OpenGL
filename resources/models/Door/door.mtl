@@ -10,7 +10,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd blue.jpg
+map_Kd blue.jpeg
 
 newmtl DoorTan
 Ns 225.000000
@@ -43,7 +43,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd red.jpg
+map_Kd red.jpeg
 
 newmtl YellowClue
 Ns 225.000000
@@ -54,7 +54,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd yellow.jpg
+map_Kd yellow.jpeg
 
 newmtl doorknob
 Ns 225.000000

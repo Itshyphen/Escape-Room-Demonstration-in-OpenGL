@@ -189,19 +189,20 @@ float skyboxVertices[] = {
     -1.0f, -1.0f, 1.0f,
     1.0f, -1.0f, 1.0f};
  vector<std::string> faces{
-     "../resources/skybox/rigwht.jpg",
-     "../resources/sky/lefwt.jpg",
-     "../resources/sky/towp.jpg",
-     "../resources/sky/botwtom.jpg",
-     "../resources/sky/bacwk.jpg",
-     "../resources/sky/fronwt.jpg"};
+     "../resources/skybox/right.jpg",
+     "../resources/skybox/left.jpg",
+     "../resources/skybox/top.jpg",
+     "../resources/skybox/bottom.jpg",
+     "../resources/skybox/back.jpg",
+     "../resources/skybox/front.jpg"};
 
  VecMat::vec3 propPosition;
- bool nightmode =  false;
+ bool nightmode =  true;
  bool yellowcard = false;
- bool bluecard =  false ;
- bool  redcard =  false ;
- bool  greencard =  false ;
+ bool bluecard =  true ;
+ bool  redcard =  true ;
+ bool  greencard =  true ;
+ bool displaycard =true;
 
 void visualisation::render::initializeGlfw()
 {
@@ -311,11 +312,11 @@ void visualisation::render::visualise()
     Shader lampShader("../resources/shaders/lightvertex.vs", "../resources/shaders/lightfragment.fs"); //Light Shader
     Shader skyboxShader("../resources/shaders/skybox.vs", "../resources/shaders/skybox.fs");           //CubeMap Shader
 
-    // setLampPosition();
-    setLightPosition();
-
     //initiliaze vertex
     initializeVertex();
+
+    // setLampPosition();
+    setLightPosition();
 
     //Get the models
     getModels();
@@ -336,6 +337,7 @@ void visualisation::render::visualise()
     // -----------
     while (!glfwWindowShouldClose(window))
     {
+
         // per-frame time logic
         // --------------------
         float currentFrame = glfwGetTime();
@@ -346,6 +348,7 @@ void visualisation::render::visualise()
         // -----
         glfwPollEvents();
         processInput(window);
+
 
         // render
         // ------
@@ -360,7 +363,7 @@ void visualisation::render::visualise()
         ourShader.setVec3("dirLight.diffuse", 0.0f, 0.0f, 0.0f);
         ourShader.setVec3("dirLight.specular", 0.5f, 0.5f, 0.5f);
 
-        if (nightmode == true){
+        if (nightmode){
             // point light 1
             ourShader.setVec3("pointLights[0].position", lightPosition[0]);
             ourShader.setVec3("pointLights[0].ambient", 0.05f, 0.05f, 0.05f);
@@ -396,7 +399,7 @@ void visualisation::render::visualise()
             ourShader.setFloat("pointLights[3].quadratic", 0.0013);
         }
         else { // point light 1
-            ourShader.setVec3("pointLights[0].position", lightPosition[0]);
+            ourShader.setVec3("pointLights[0].position", VecMat::vec3(0.8, 6, -5.1));
             ourShader.setVec3("pointLights[0].ambient", 0.05f, 0.05f, 0.05f);
             ourShader.setVec3("pointLights[0].diffuse", 0.8f, 0.8f, 0.8f);
             ourShader.setVec3("pointLights[0].specular", 1.0f, 1.0f, 1.0f);
@@ -404,7 +407,7 @@ void visualisation::render::visualise()
             ourShader.setFloat("pointLights[0].linear", 0.09);
             ourShader.setFloat("pointLights[0].quadratic", 0.032);
             // point light 2
-            ourShader.setVec3("pointLights[1].position", lightPosition[1]);
+            ourShader.setVec3("pointLights[1].position", VecMat::vec3(-0.8, 6, -5.1));
             ourShader.setVec3("pointLights[1].ambient", 0.05f, 0.05f, 0.05f);
             ourShader.setVec3("pointLights[1].diffuse", 0.8f, 0.8f, 0.8f);
             ourShader.setVec3("pointLights[1].specular", 1.0f, 1.0f, 1.0f);
@@ -412,7 +415,7 @@ void visualisation::render::visualise()
             ourShader.setFloat("pointLights[1].linear", 0.09);
             ourShader.setFloat("pointLights[1].quadratic", 0.032);
             // // point light 2
-            ourShader.setVec3("pointLights[2].position", lightPosition[2]);
+            ourShader.setVec3("pointLights[2].position", VecMat::vec3(3.55, 2.1, -4.6));
             ourShader.setVec3("pointLights[2].ambient", 0.05f, 0.05f, 0.05f);
             ourShader.setVec3("pointLights[2].diffuse", 1.0f, 1.0f, 0.5f);
             ourShader.setVec3("pointLights[2].specular", 1.0f, 1.0f, 1.0f);
@@ -420,7 +423,7 @@ void visualisation::render::visualise()
             ourShader.setFloat("pointLights[2].linear", 0.09);
             ourShader.setFloat("pointLights[2].quadratic", 0.032);
             // // point light 3
-            ourShader.setVec3("pointLights[3].position", lightPosition[3]);
+            ourShader.setVec3("pointLights[3].position", VecMat::vec3(0, 40, 0));
             ourShader.setVec3("pointLights[3].ambient", 0.15f, 0.15f, 0.15f);
             ourShader.setVec3("pointLights[3].diffuse", 0.8f, 0.8f, 0.8f);
             ourShader.setVec3("pointLights[3].specular", 1.0f, 1.0f, 1.0f);
@@ -454,7 +457,7 @@ void visualisation::render::visualise()
         for (int i = 0; i < models.size(); ++i)
         {
             VecMat::mat4 modelObject = VecMat::mat4(1.0f);
-            if (modelname[i] == "door" && opendoor == true)
+            if (modelname[i] == "door" && opendoor)
             {
                 modelObject = VecMat::translate(modelObject, VecMat::vec3(-4.5,0.0,0.75)); // Translate it down a bit so it's at the center of the scene
                 modelObject = VecMat::rotate(modelObject, to_radians(80.0f), VecMat::vec3(0.0f, 1.0f, 0.0f));
@@ -462,10 +465,37 @@ void visualisation::render::visualise()
             }
             else
             {
+                if (modelname[i] == "redCard" && redcard)
+                {
+//                    modelObject = VecMat::translate(modelObject, modelPosition[i]);
+                    modelPosition[i] = VecMat::vec3(-4.32, 3.66, 3.29);
+                    modelAngle[i]=90.0f;
+//                    modelScale[i]=VecMat::vec3(6, 6, 3);
 
-                modelObject = VecMat::translate(modelObject, modelPosition[i]); // Translate it down a bit so it's at the center of the scene
-                modelObject = VecMat::rotate(modelObject, to_radians((float)modelAngle[i]), VecMat::vec3(0.0f, 1.0f, 0.0f));
-                modelObject = VecMat::scale(modelObject, modelScale[i]); 
+                }
+                if (modelname[i] == "yellowCard" && yellowcard)
+                {
+                    modelPosition[i] = VecMat::vec3(-4.32, 3.11, 3.29);
+                    modelAngle[i]=90.0f;
+                }
+                if (modelname[i] == "blueCard" && bluecard)
+                {
+                    modelPosition[i] = VecMat::vec3(-4.32, 3.70, 4.42);
+                    modelAngle[i]=90.0f;
+                }
+                if (modelname[i] == "greenCard" && greencard)
+                {
+                    modelPosition[i] = VecMat::vec3(-4.32, 3.09, 4.40);
+                    modelAngle[i]=90.0f;
+                }
+
+                    modelObject = VecMat::translate(modelObject, modelPosition[i]); // Translate it down a bit so it's at the center of the scene
+                    modelObject = VecMat::rotate(modelObject, to_radians((float)modelAngle[i]), VecMat::vec3(0.0f, 1.0f, 0.0f));
+                    modelObject = VecMat::rotate(modelObject, to_radians((float)modelAngle[i]), VecMat::vec3(1.0f, 0.0f, 0.0f));
+                    modelObject = VecMat::scale(modelObject, modelScale[i]);
+
+
+
             }
 
             // It's a bit too big for our scene, so scale it down
@@ -476,8 +506,8 @@ void visualisation::render::visualise()
 
         VecMat::mat4 candle(1.0);
 //        candle = VecMat::translate(candle,camera.Position+VecMat::normalize(camera.Front)*0.1);
-VecMat::vec3 candlePos=camera.Position+VecMat::normalize(camera.Front)*0.1;
-candle = VecMat::translate(candle,VecMat::vec3(candlePos.x,candlePos.y-0.02,candlePos.z));
+        VecMat::vec3 candlePos=camera.Position+VecMat::normalize(camera.Front)*0.1;
+        candle = VecMat::translate(candle,VecMat::vec3(candlePos.x,candlePos.y-0.02,candlePos.z));
 
         candle = VecMat::scale(candle,VecMat::vec3(0.01,0.01,0.01));
         ourShader.setMat4("model", candle);
@@ -485,10 +515,7 @@ candle = VecMat::translate(candle,VecMat::vec3(candlePos.x,candlePos.y-0.02,cand
 
         camera.setPropPosition(propPosition);
         std::cout<<candlePos.x<<","<<candlePos.y-0.02<<","<<candlePos.z<<std::endl;
-        if(bluecard || redcard || greencard || yellowcard)
-        {
-            std::cout<<bluecard<<","<<redcard<<","<<greencard<<","<<yellowcard<< std::endl;
-        }
+
         //light objects
         for (unsigned int i = 0; i < 2; i++)
         {
@@ -575,7 +602,7 @@ void processInput(GLFWwindow *window)
         propPosition = propPosition + VecMat::vec3(0, -0.1, 0);
     }
     if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS)
-        opendoor = true;
+        opendoor=true;
     if (glfwGetKey(window, GLFW_KEY_O) == GLFW_RELEASE)
         opendoor = false;
     if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
@@ -604,6 +631,22 @@ void processInput(GLFWwindow *window)
         if ((2.0 < candlePos.x && candlePos.x < 2.8) && ((0.6 < (candlePos.y - 0.02)) && ((candlePos.y - 0.02) < 1.2)) && (2.5 < candlePos.z && candlePos.z < 3.2))
         {
             yellowcard = true;
+        }
+//        if(bluecard && redcard && greencard && yellowcard)
+//        {
+//            nightmode=false;
+//            opendoor = true;
+//
+//        }
+    }
+    if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_RELEASE){
+        if(bluecard && redcard && greencard && yellowcard)
+        {
+            nightmode=false;
+            opendoor = true;
+            displaycard =false;
+//            camera.Front=VecMat::vec3(2.40302,3.35561,2.98072);
+
         }
     }
 }
