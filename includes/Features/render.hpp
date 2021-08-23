@@ -193,8 +193,8 @@ float skyboxVertices[] = {
      "../resources/skybox/left.jpg",
      "../resources/skybox/top.jpg",
      "../resources/skybox/bottom.jpg",
-     "../resources/skybox/back.jpg",
-     "../resources/skybox/front.jpg"};
+     "../resources/skybox/front.jpg",
+     "../resources/skybox/back.jpg"};
 
  VecMat::vec3 propPosition;
  bool nightmode =  true;
