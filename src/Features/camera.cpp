@@ -13,7 +13,7 @@
 //         updateCameraVectors();
 //     }
 //COnstructor with VecMat library
-     Camera::Camera(VecMat::vec3 position , VecMat::vec3 up , float yaw, float pitch) : Front(VecMat::vec3(-20.0f, -20.0f, -20.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
+     Camera::Camera(VecMat::vec3 position , VecMat::vec3 up , float yaw, float pitch) : Front(VecMat::vec3(2.22f, 3.04f, 2.70f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
     {
         Position = position;
         WorldUp = up;
@@ -22,7 +22,7 @@
         updateCameraVectors();
     }
     // constructor with scalar values
-    Camera::Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch) : Front(VecMat::vec3(-4.0f, -4.0f, -4.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
+    Camera::Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch) : Front(VecMat::vec3(2.22f, 3.04f, 2.70f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
     {
         Position = VecMat::vec3(posX, posY, posZ);
         WorldUp = VecMat::vec3(upX, upY, upZ);
