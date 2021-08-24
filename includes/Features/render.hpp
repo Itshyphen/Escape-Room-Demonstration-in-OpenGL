@@ -199,9 +199,9 @@ float skyboxVertices[] = {
  VecMat::vec3 propPosition;
  bool nightmode =  true;
  bool yellowcard = false;
- bool bluecard =  true ;
- bool  redcard =  true ;
- bool  greencard =  true ;
+ bool bluecard =  false ;
+ bool  redcard =  false ;
+ bool  greencard =  false ;
  bool displaycard =true;
 
 void visualisation::render::initializeGlfw()
@@ -526,7 +526,7 @@ void visualisation::render::visualise()
         model.Draw(ourShader);
 
         camera.setPropPosition(propPosition);
-        std::cout<<candlePos.x<<","<<candlePos.y-0.02<<","<<candlePos.z<<std::endl;
+//        std::cout<<candlePos.x<<","<<candlePos.y-0.02<<","<<candlePos.z<<std::endl;
 
         //light objects
         for (unsigned int i = 0; i < 2; i++)
@@ -629,19 +629,22 @@ void processInput(GLFWwindow *window)
 
         if ((-3.74 < candlePos.x && candlePos.x < -3.3) && ((0.16 < (candlePos.y - 0.02)) && ((candlePos.y - 0.02) < 0.38)) && (-3.56 < candlePos.z) && (candlePos.z < -3.2))
         {
-            cout<<"Test"<<endl;
+            cout<<"Blue card found!"<<endl;
             bluecard = true;
         }
         if ((3.3 < candlePos.x && candlePos.x < 3.9) && ((0.9 < (candlePos.y - 0.02)) && ((candlePos.y - 0.02) < 1.2)) && (-4.4 < candlePos.z) && (candlePos.z < -3.9))
         {
+            cout<<"Red card found!"<<endl;
             redcard = true;
         }
         if ((-3.6 < candlePos.x && candlePos.x < -3.0) && ((4.4 < (candlePos.y - 0.02)) && ((candlePos.y - 0.02) < 5.2)) && (-5.2 < candlePos.z && candlePos.z < -4.4))
         {
+            cout<<"Green card found!"<<endl;
             greencard = true;
         }
         if ((2.0 < candlePos.x && candlePos.x < 2.8) && ((0.6 < (candlePos.y - 0.02)) && ((candlePos.y - 0.02) < 1.2)) && (2.5 < candlePos.z && candlePos.z < 3.2))
         {
+            cout<<"Yellow card found!"<<endl;
             yellowcard = true;
         }
 //        if(bluecard && redcard && greencard && yellowcard)
@@ -654,6 +657,7 @@ void processInput(GLFWwindow *window)
     if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_RELEASE){
         if(bluecard && redcard && greencard && yellowcard)
         {
+            std:: cout<<"All cards are found. Lights turned on! \n Door Opened!";
             nightmode=false;
             opendoor = true;
             displaycard =false;
