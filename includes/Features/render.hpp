@@ -626,8 +626,8 @@ void processInput(GLFWwindow *window)
     {
         //greencard = !greencard;
         VecMat::vec3 candlePos = camera.Position + VecMat::normalize(camera.Front) * 0.1;
-
-        if ((-3.74 < candlePos.x && candlePos.x < -3.3) && ((0.16 < (candlePos.y - 0.02)) && ((candlePos.y - 0.02) < 0.38)) && (-3.56 < candlePos.z) && (candlePos.z < -3.2))
+        cout<<candlePos.x<<", "<<candlePos.y<<", "<<candlePos.z<<endl;
+        if ((-3.9 < candlePos.x && candlePos.x < -3.2) && ((0.01 < (candlePos.y - 0.02)) && ((candlePos.y - 0.02) < 0.10)) && (-3.56 < candlePos.z) && (candlePos.z < -3.0))
         {
             cout<<"Blue card found!"<<endl;
             bluecard = true;
