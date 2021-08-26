@@ -10,7 +10,7 @@ int main()
         roomObjects->setModelName("../resources/models/Room/room4walls.obj");
 
         auto door = new Object("door");
-        door->setPosition(0.0f,0.0,0.0f);
+        door->setPosition(0.05f,0.0,0.0f);
         door->setScale(3.0f,3.0f,3.0f);
         door->setRotationVector(0,1,0);
         door->setAngle(0);

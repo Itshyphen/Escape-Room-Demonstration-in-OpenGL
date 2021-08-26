@@ -525,6 +525,11 @@ void visualisation::render::visualise()
         ourShader.setMat4("model", candle);
         model.Draw(ourShader);
 
+        if(displaycard)
+        {
+            model.Draw(ourShader);
+        }
+
         camera.setPropPosition(propPosition);
 //        std::cout<<candlePos.x<<","<<candlePos.y-0.02<<","<<candlePos.z<<std::endl;
 
