@@ -199,9 +199,9 @@ float skyboxVertices[] = {
  VecMat::vec3 propPosition;
  bool nightmode =  true;
  bool yellowcard = false;
- bool bluecard =  false ;
- bool  redcard =  false ;
- bool  greencard =  false ;
+ bool bluecard =  true ;
+ bool  redcard =  true ;
+ bool  greencard =  true ;
  bool displaycard =true;
 
 void visualisation::render::initializeGlfw()
@@ -381,8 +381,8 @@ void visualisation::render::visualise()
             ourShader.setFloat("pointLights[1].linear", 0.09);
             ourShader.setFloat("pointLights[1].quadratic", 0.032);
             // // point light 2
-            VecMat::vec3 candlePos =camera.Position+VecMat::normalize(camera.Front)*0.1;
-            ourShader.setVec3("pointLights[2].position",VecMat::vec3(candlePos.x,candlePos.y+0.02,candlePos.z));
+            VecMat::vec3 candlePos =camera.Position+camera.Front;
+            ourShader.setVec3("pointLights[2].position",VecMat::vec3(candlePos.x,candlePos.y+0.2,candlePos.z));
             ourShader.setVec3("pointLights[2].ambient", 0.00005f, 0.00005f, 0.00005f);
             ourShader.setVec3("pointLights[2].diffuse", 1.0f, 1.0f, 0.5f);
             ourShader.setVec3("pointLights[2].specular", 1.0f, 1.0f, 1.0f);
@@ -518,15 +518,20 @@ void visualisation::render::visualise()
 
         VecMat::mat4 candle(1.0);
 //        candle = VecMat::translate(candle,camera.Position+VecMat::normalize(camera.Front)*0.1);
-        VecMat::vec3 candlePos=camera.Position+VecMat::normalize(camera.Front)*0.1;
+        VecMat::vec3 candlePos=camera.Position+camera.Front;
         candle = VecMat::translate(candle,VecMat::vec3(candlePos.x,candlePos.y-0.02,candlePos.z));
 
-        candle = VecMat::scale(candle,VecMat::vec3(0.01,0.01,0.01));
+        candle = VecMat::scale(candle,VecMat::vec3(0.1,0.1,0.1));
+
         ourShader.setMat4("model", candle);
-        model.Draw(ourShader);
+        if(displaycard)
+        {
+            model.Draw(ourShader);
+        }
+
 
         camera.setPropPosition(propPosition);
-//        std::cout<<candlePos.x<<","<<candlePos.y-0.02<<","<<candlePos.z<<std::endl;
+        std::cout<<candlePos.x<<","<<candlePos.y-0.02<<","<<candlePos.z<<std::endl;
 
         //light objects
         for (unsigned int i = 0; i < 2; i++)
@@ -625,7 +630,7 @@ void processInput(GLFWwindow *window)
     if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
     {
         //greencard = !greencard;
-        VecMat::vec3 candlePos = camera.Position + VecMat::normalize(camera.Front) * 0.1;
+        VecMat::vec3 candlePos = camera.Position + camera.Front;
 
         if ((-3.74 < candlePos.x && candlePos.x < -3.3) && ((0.16 < (candlePos.y - 0.02)) && ((candlePos.y - 0.02) < 0.38)) && (-3.56 < candlePos.z) && (candlePos.z < -3.2))
         {
@@ -642,7 +647,7 @@ void processInput(GLFWwindow *window)
             cout<<"Green card found!"<<endl;
             greencard = true;
         }
-        if ((2.0 < candlePos.x && candlePos.x < 2.8) && ((0.6 < (candlePos.y - 0.02)) && ((candlePos.y - 0.02) < 1.2)) && (2.5 < candlePos.z && candlePos.z < 3.2))
+        if ((2.0 < candlePos.x && candlePos.x < 2.6) && ((0.4 < (candlePos.y - 0.02)) && ((candlePos.y - 0.02) < 1.2)) && (2.5 < candlePos.z && candlePos.z < 3.2))
         {
             cout<<"Yellow card found!"<<endl;
             yellowcard = true;
@@ -659,6 +664,7 @@ void processInput(GLFWwindow *window)
         {
             std:: cout<<"All cards are found. Lights turned on! \n Door Opened!";
             nightmode=false;
+            camera.escape = true;
             opendoor = true;
             displaycard =false;
 //            camera.Front=VecMat::vec3(2.40302,3.35561,2.98072);

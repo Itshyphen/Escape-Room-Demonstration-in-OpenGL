@@ -68,33 +68,73 @@ VecMat::vec3 Camera::getPropPosition() {
 //        if(Position+Front<=VecMat::vec3(4.4,7.0,5.2) and Position+Front>VecMat::vec3(-4.0,1.5,-4.9)) {
             float velocity = 0.5 * deltaTime;
 //        }
-            if (direction == FORWARD) {
-                Position += Front * velocity;
-                propPosition += Front * velocity;
-            }
-            if (direction == BACKWARD) {
-                Position -= Front * velocity;
-                propPosition -= Front * velocity;
-            }
-            if (direction == LEFT) {
-                Position -= Right * velocity;
-                propPosition -= Right * velocity;
-            }
-            if (direction == RIGHT) {
-                Position += Right * velocity;
-                propPosition += Right * velocity;
+if(!escape){
 
-            }
-            if (direction == UP) {
-                Position += WorldUp * velocity;
-                propPosition += WorldUp * velocity;
+    if(Position+Front<=POS_AXES && Position+Front>NEG_AXES && direction == FORWARD)
+    {
 
-            }
-            if (direction == DOWN) {
-                Position -= WorldUp * velocity;
-                propPosition -= WorldUp * velocity;
+        Position += Front * velocity;
+        propPosition += Front * velocity;
+    }else if(direction==FORWARD){
+        Position -= Front * 0.05;
+    }
 
-            }
+    if (Position+Front<=POS_AXES && Position+Front>NEG_AXES && direction == BACKWARD) {
+        Position -= Front * velocity;
+    }
+    else if(direction==BACKWARD){
+        Position += Front * 0.05;
+    }
+    if (Position+Front<=POS_AXES && Position+Front>NEG_AXES && direction == LEFT) {
+        Position -= Right * velocity;
+    }
+    else if(direction==LEFT){
+        Position  += Right * 0.05;
+    }
+    if (Position+Front<=POS_AXES && Position+Front>NEG_AXES && direction == RIGHT) {
+        Position += Right * velocity;
+
+    }else if(direction==RIGHT){
+        Position  -= Right * 0.05;
+    }
+    if (Position+Front<=POS_AXES && Position+Front>NEG_AXES && direction == UP) {
+        Position += WorldUp * velocity;
+
+    }else if(direction==UP){
+        Position -= WorldUp * 0.05;
+    }
+    if (Position+Front<=POS_AXES && Position+Front>NEG_AXES &&direction == DOWN) {
+        Position -= WorldUp * velocity;
+
+    }else if(direction==DOWN){
+        Position += WorldUp * 0.05;
+    }
+
+}else{
+    if (direction == FORWARD) {
+        Position += Front * velocity;
+    }
+    if (direction == BACKWARD) {
+        Position -= Front * velocity;
+    }
+    if (direction == LEFT) {
+        Position -= Right * velocity;
+    }
+    if (direction == RIGHT) {
+        Position += Right * velocity;
+
+    }
+    if (direction == UP) {
+        Position += WorldUp * velocity;
+
+    }
+    if (direction == DOWN) {
+        Position -= WorldUp * velocity;
+
+    }
+
+}
+
 
         propPosition.display();
     }
@@ -123,16 +163,16 @@ VecMat::vec3 Camera::getPropPosition() {
         xoffset *= MouseSensitivity;
         yoffset *= MouseSensitivity;
 
-        Yaw   += xoffset;
-        Pitch += yoffset;
+        Yaw   += 2*xoffset;
+        Pitch += 2*yoffset;
 
         // make sure that when pitch is out of bounds, screen doesn't get flipped
-       
-            if (Pitch > 89.0f)
-                Pitch = 89.0f;
-            if (Pitch < -89.0f)
-                Pitch = -89.0f;
-        
+
+//            if (Pitch > 89.0f)
+//                Pitch = 89.0f;
+//            if (Pitch < -89.0f)
+//                Pitch = -89.0f;
+
 
         // update Front, Right and Up Vectors using the updated Euler angles
         updateCameraVectors();
@@ -145,7 +185,7 @@ VecMat::vec3 Camera::getPropPosition() {
         if (Zoom < 1.0f)
             Zoom = 1.0f;
         if (Zoom > 45.0f)
-            Zoom = 45.0f; 
+            Zoom = 45.0f;
     }
 
     // Calculates the front vector from the Camera's (updated) Eular Angles
@@ -157,7 +197,7 @@ VecMat::vec3 Camera::getPropPosition() {
     //     front.y = sin(glm::radians(Pitch));
     //     front.z = sin(glm::radians(Yaw)) * cos(glm::radians(Pitch));
     //     Front = glm::normalize(front);
-        
+
     //     Right = glm::normalize(glm::cross(Front, WorldUp));  // normalize the vectors, because their length gets closer to 0 the more you look up or down which results in slower movement.
     //     Up    = glm::normalize(glm::cross(Right, Front));
     // }
@@ -171,12 +211,13 @@ VecMat::vec3 Camera::getPropPosition() {
         front.x = cos(to_radians(Yaw)) * cos(to_radians(Pitch));
         front.y = sin(to_radians(Pitch));
         front.z = sin(to_radians(Yaw)) * cos(to_radians(Pitch));
-//        if(Position+VecMat::normalize(front)<=VecMat::vec3(4.4,7.0,5.2) and Position+VecMat::normalize(front)>VecMat::vec3(-4.0,1.5,-4.64))
-//        {
-//
-//        }
-        Front = VecMat::normalize(front);
-        
+
+        if((Position+VecMat::normalize(front)<=POS_AXES && Position+VecMat::normalize(front)>NEG_AXES && !escape)||(escape))
+        {
+            Front = VecMat::normalize(front);
+        }
+
+
         Right = VecMat::normalize(VecMat::cross(Front, WorldUp));  // normalize the vectors, because their length gets closer to 0 the more you look up or down which results in slower movement.
         Up    = VecMat::normalize(VecMat::cross(Right, Front));
     }
