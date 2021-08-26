@@ -1,4 +1,4 @@
-# Blender MTL File: 'None'
+# Blender MTL File: 'yellow.blend'
 # Material Count: 2
 
 newmtl ClueNum.004
@@ -10,7 +10,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd \Pictures\door.jpg
+map_Kd /Pictures/door.jpg
 
 newmtl YellowClue.002
 Ns 225.000000
@@ -21,4 +21,4 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd \Pictures\yellow.jpeg
+map_Kd /Pictures/yellow.jpeg

@@ -17,14 +17,14 @@ int main()
         door->setModelName("../resources/models/Door/door.obj");
 
        auto blueCard = new Object("blueCard");
-       blueCard->setPosition(-3.63f,0.35f,-3.28f);
+       blueCard->setPosition(-3.58f,0.02f,-3.28f);
        blueCard->setScale(3.0f,3.0f,3.0f);
        blueCard->setRotationVector(0,1,0);
-       blueCard->setAngle(45);
+       blueCard->setAngle(35);
        blueCard->setModelName("../resources/models/Room/blueC.obj");
 
        auto redCard = new Object("redCard");
-       redCard->setPosition(3.69f,1.16f,-4.17f);
+       redCard->setPosition(3.69f,1.10f,-4.17f);
        redCard->setScale(3.0f,3.0f,3.0f);
        redCard->setRotationVector(0,1,0);
        redCard->setAngle(0);
