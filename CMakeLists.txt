@@ -1,12 +1,5 @@
-cmake_minimum_required(VERSION 3.2)
-
-# set compiler to clang
-set(CMAKE_C_COMPILER)
-set(CMAKE_CXX_COMPILER)
-
-
+cmake_minimum_required(VERSION 3.16)
 project(ComputerGraphics)
-
 
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
@@ -49,3 +42,4 @@ elseif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     add_executable(ComputerGraphics resources/Glad/glad.c src/main.cpp src/Features/shader.cpp src/Features/texture.cpp src/Features/camera.cpp src/Features/shader.cpp src/Features/texture.cpp src/Features/object.cpp VecMat/arithmetic.cpp )
     target_link_libraries(ComputerGraphics GL GLU glfw dl X11 Xxf86vm Xrandr pthread Xi dl assimp)
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+
