@@ -5,8 +5,8 @@
 #include "matrix.hpp"
 #include <vector>
 
-#define POS_AXES VecMat::vec3(4.42,6.75,4.25)
-#define NEG_AXES VecMat::vec3(-4.27,0.1,-5.16)
+#define POS_AXES VecMat::vec3(100,100,100)
+#define NEG_AXES VecMat::vec3(-100,-100,-100)
 // Defines several possible options for camera movement. Used as abstraction to stay away from window-system specific input methods
 enum Camera_Movement {
     FORWARD,

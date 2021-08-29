@@ -381,12 +381,12 @@ void visualisation::render::visualise()
             ourShader.setFloat("pointLights[1].linear", 0.09);
             ourShader.setFloat("pointLights[1].quadratic", 0.032);
             // // point light 2
-            VecMat::vec3 candlePos =camera.Position+camera.Front;
-            ourShader.setVec3("pointLights[2].position",VecMat::vec3(candlePos.x,candlePos.y+0.2,candlePos.z));
+            VecMat::vec3 candlePos =camera.Position+camera.Front*0.1;
+            ourShader.setVec3("pointLights[2].position",VecMat::vec3(candlePos.x,candlePos.y,candlePos.z));
             ourShader.setVec3("pointLights[2].ambient", 0.00005f, 0.00005f, 0.00005f);
             ourShader.setVec3("pointLights[2].diffuse", 1.0f, 1.0f, 0.5f);
             ourShader.setVec3("pointLights[2].specular", 1.0f, 1.0f, 1.0f);
-            ourShader.setFloat("pointLights[2].constant", 1.0f);
+            ourShader.setFloat("pointLights[2].constant",1.0f);
             ourShader.setFloat("pointLights[2].linear", 0.009);
             ourShader.setFloat("pointLights[2].quadratic", 0.032);
             // // point light 3
@@ -518,10 +518,10 @@ void visualisation::render::visualise()
 
         VecMat::mat4 candle(1.0);
 //        candle = VecMat::translate(candle,camera.Position+VecMat::normalize(camera.Front)*0.1);
-        VecMat::vec3 candlePos=camera.Position+camera.Front;
+        VecMat::vec3 candlePos=camera.Position+camera.Front*0.1;
         candle = VecMat::translate(candle,VecMat::vec3(candlePos.x,candlePos.y-0.02,candlePos.z));
 
-        candle = VecMat::scale(candle,VecMat::vec3(0.1,0.1,0.1));
+        candle = VecMat::scale(candle,VecMat::vec3(0.01,0.01,0.01));
 
         ourShader.setMat4("model", candle);
         if(displaycard)
@@ -631,7 +631,7 @@ void processInput(GLFWwindow *window)
     {
         //greencard = !greencard;
 
-        VecMat::vec3 candlePos = camera.Position + camera.Front;
+        VecMat::vec3 candlePos = camera.Position + camera.Front*0.1;
 
         if ((-3.9 < candlePos.x && candlePos.x < -3.2) && ((0.01 < (candlePos.y - 0.02)) && ((candlePos.y - 0.02) < 0.10)) && (-3.56 < candlePos.z) && (candlePos.z < -3.0))
         {
