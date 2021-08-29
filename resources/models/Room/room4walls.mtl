@@ -33,7 +33,11 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
+<<<<<<< HEAD
 map_Kd /Pictures/darkblanket.jpg
+=======
+map_Kd Pictures\\darkblanket.jpg
+>>>>>>> 694d692dea926334deb6acec152adcf17f086dec
 
 newmtl BedsideDrawer
 Ns 225.000000
