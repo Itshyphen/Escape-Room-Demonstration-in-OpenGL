@@ -235,8 +235,9 @@ void visualisation::render::initializeGlfw()
     }
 
     glEnable(GL_DEPTH_TEST);
-//    glDepthMask(GL_FALSE);
-
+    glDepthMask(GL_TRUE);
+    glDepthFunc(GL_LEQUAL);
+    glDepthRange(0.0f, 1.0f);
 
     cout << "WINDOW CREATED!" << endl;
 }
@@ -351,8 +352,8 @@ void visualisation::render::visualise()
 
 
         // render
-        // ------
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+//        glClearDepth(1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         ourShader.Bind();
         ourShader.setVec3("viewPos", camera.Position);
@@ -373,13 +374,13 @@ void visualisation::render::visualise()
             ourShader.setFloat("pointLights[0].linear", 0.09);
             ourShader.setFloat("pointLights[0].quadratic", 0.032);
             // point light 2
-            ourShader.setVec3("pointLights[1].position", lightPosition[1]);
+            ourShader.setVec3("pointLights[1].position", VecMat::vec3(-2.30034,5.45702,-4.67766));
             ourShader.setVec3("pointLights[1].ambient", 0.05f, 0.05f, 0.05f);
             ourShader.setVec3("pointLights[1].diffuse", sin(time(nullptr)), 0.8f, cos(time(nullptr)));
             ourShader.setVec3("pointLights[1].specular", 1.0f, 1.0f, 1.0f);
             ourShader.setFloat("pointLights[1].constant", 1.0f);
-            ourShader.setFloat("pointLights[1].linear", 0.09);
-            ourShader.setFloat("pointLights[1].quadratic", 0.032);
+            ourShader.setFloat("pointLights[1].linear", 1.0f);
+            ourShader.setFloat("pointLights[1].quadratic", 0.42);
             // // point light 2
             VecMat::vec3 candlePos =camera.Position+camera.Front*0.1;
             ourShader.setVec3("pointLights[2].position",VecMat::vec3(candlePos.x,candlePos.y,candlePos.z));
@@ -387,16 +388,16 @@ void visualisation::render::visualise()
             ourShader.setVec3("pointLights[2].diffuse", 1.0f, 1.0f, 0.5f);
             ourShader.setVec3("pointLights[2].specular", 1.0f, 1.0f, 1.0f);
             ourShader.setFloat("pointLights[2].constant",1.0f);
-            ourShader.setFloat("pointLights[2].linear", 0.009);
-            ourShader.setFloat("pointLights[2].quadratic", 0.032);
+            ourShader.setFloat("pointLights[2].linear", 0.9);
+            ourShader.setFloat("pointLights[2].quadratic", 0.32);
             // // point light 3
-            ourShader.setVec3("pointLights[3].position", lightPosition[3]);
+            ourShader.setVec3("pointLights[3].position", VecMat::vec3(0, 40, 0));
             ourShader.setVec3("pointLights[3].ambient", 0.15f, 0.15f, 0.15f);
             ourShader.setVec3("pointLights[3].diffuse", 0.8f, 0.8f, 0.8f);
             ourShader.setVec3("pointLights[3].specular", 1.0f, 1.0f, 1.0f);
-            ourShader.setFloat("pointLights[3].constant", 0.01f);
-            ourShader.setFloat("pointLights[3].linear", 0.0004);
-            ourShader.setFloat("pointLights[3].quadratic", 0.0013);
+            ourShader.setFloat("pointLights[3].constant", 0.1f);
+            ourShader.setFloat("pointLights[3].linear", 0.04);
+            ourShader.setFloat("pointLights[3].quadratic", 0.0032);
         }
         else { // point light 1
             ourShader.setVec3("pointLights[0].position", VecMat::vec3(0.8, 6, -5.1));
@@ -413,7 +414,7 @@ void visualisation::render::visualise()
             ourShader.setVec3("pointLights[1].specular", 1.0f, 1.0f, 1.0f);
             ourShader.setFloat("pointLights[1].constant", 1.0f);
             ourShader.setFloat("pointLights[1].linear", 0.09);
-            ourShader.setFloat("pointLights[1].quadratic", 0.032);
+            ourShader.setFloat("pointLights[1].quadratic", 0.042);
             // // point light 2
             ourShader.setVec3("pointLights[2].position", VecMat::vec3(3.55, 2.1, -4.6));
             ourShader.setVec3("pointLights[2].ambient", 0.05f, 0.05f, 0.05f);
@@ -421,7 +422,7 @@ void visualisation::render::visualise()
             ourShader.setVec3("pointLights[2].specular", 1.0f, 1.0f, 1.0f);
             ourShader.setFloat("pointLights[2].constant", 1.0f);
             ourShader.setFloat("pointLights[2].linear", 0.09);
-            ourShader.setFloat("pointLights[2].quadratic", 0.032);
+            ourShader.setFloat("pointLights[2].quadratic", 0.0032);
             // // point light 3
             ourShader.setVec3("pointLights[3].position", VecMat::vec3(0, 40, 0));
             ourShader.setVec3("pointLights[3].ambient", 0.15f, 0.15f, 0.15f);

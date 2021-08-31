@@ -41,11 +41,28 @@ uniform PointLight pointLights[NR_POINT_LIGHTS];
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir);
 vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
 
+float near = 0.1f;
+float far = 100.0f;
+
+float linearizeDepth(float depth)
+{
+	return (2.0 * near * far) / (far + near - (depth * 2.0 - 1.0) * (far - near));
+}
+
+// float logisticDepth(float depth, float steepness = 0.5f, float offset = 5.0f)
+// {
+// 	float zVal = linearizeDepth(depth);
+// 	return (1 / (1 + exp(-steepness * (zVal - offset))));
+// }
+
 void main()
 {
         vec3 norm = normalize(Normal);
         vec3 viewDir = normalize(viewPos - FragPos);
-		
+
+// 		float depth = logisticDepth(gl_FragCoord.z);
+
+
 		//directional light
 		vec3 result = CalcDirLight(dirLight, norm, viewDir);
 		//point lights 
@@ -91,7 +108,7 @@ vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
     return (ambient + diffuse + specular);
 }
 
-//original code written by Ranju
+
 // #version 330 core
 //
 // in vec2 TexCoords;
@@ -213,20 +230,8 @@ vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
 //
 // 	return (texture(diffuse0, texCoord) * (diffuse * inten + ambient) + texture(specular0, texCoord).r * specular * inten) * lightColor;
 // }
-//
-// float near = 0.1f;
-// float far = 100.0f;
-//
-// float linearizeDepth(float depth)
-// {
-// 	return (2.0 * near * far) / (far + near - (depth * 2.0 - 1.0) * (far - near));
-// }
-//
-// float logisticDepth(float depth, float steepness = 0.5f, float offset = 5.0f)
-// {
-// 	float zVal = linearizeDepth(depth);
-// 	return (1 / (1 + exp(-steepness * (zVal - offset))));
-// }
+
+
 //
 // void main()
 // {
