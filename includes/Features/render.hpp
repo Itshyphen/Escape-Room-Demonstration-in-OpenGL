@@ -199,9 +199,9 @@ float skyboxVertices[] = {
  VecMat::vec3 propPosition;
  bool nightmode =  true;
  bool yellowcard = false;
- bool bluecard =  true ;
- bool  redcard =  true ;
- bool  greencard =  true ;
+ bool bluecard =  false ;
+ bool  redcard =  false ;
+ bool  greencard =  false ;
  bool displaycard =true;
 
 void visualisation::render::initializeGlfw()
