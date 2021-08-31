@@ -3,7 +3,7 @@
 3D rendering of a room with simple escame room logic using the concept of computer graphics along with the implementation of camera, lighting, skybox and so on.\
 \
 Four different colour cards(model) are placed in different positions of the room.
-The user needs to find all those cards, after which the door opens and ligh get turned on and the game is complete\
+The user needs to find all those cards, after which the door opens and ligh get turned on and the game is complete
 
 
 
