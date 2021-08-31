@@ -18,12 +18,12 @@ The user needs to find all those cards, after which the door opens and ligh get 
 Compiling is simple in itself, simply compile all the executables within the src/Features folder and the main.cpp in the root directory and link the following 
 sfml flags with the compiler:\
 \
-`-lopengl32 -lgl -lglfw3 -lassimp`\
+`-lopengl32 -lgl -lglfw3 -lassimp`
 
 
 ##### 1) Windows
 You can use CMake if you are on Windows to build the executable through the
-CMakeLists file included in the root directory. Make sure to build the assimp library on your own.\
+CMakeLists file included in the root directory. Make sure to build the assimp library on your own.
 
 
 ##### 2) Linux
