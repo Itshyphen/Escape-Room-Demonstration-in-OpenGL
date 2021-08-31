@@ -15,7 +15,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     file(GLOB INCLUDES
             includes/*.h
             includes/*.hpp
-            ${CMAKE_SOURCE_DIR}/Dependencies/includes/*
+            ${CMAKE_SOURCE_DIR}/Libraries/includes/*
             )
     file(GLOB SRC src/Features/*.cpp src/Features/*.c VecMat/arithmetic.cpp resources/Glad/glad.c)
 
@@ -23,12 +23,12 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
             ${CMAKE_SOURCE_DIR}/VecMat
             ${CMAKE_SOURCE_DIR}/includes
             ${CMAKE_SOURCE_DIR}/includes/Features
-            ${CMAKE_SOURCE_DIR}/Dependencies/includes
+            ${CMAKE_SOURCE_DIR}/Libraries/includes
     )
 
     set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/build/)
-    link_directories(${CMAKE_SOURCE_DIR}/Dependencies/lib)
-    link_directories(${CMAKE_SOURCE_DIR}/Dependencies/lib/Release)
+    link_directories(${CMAKE_SOURCE_DIR}/Libraries/lib)
+    link_directories(${CMAKE_SOURCE_DIR}/Libraries/lib/Release)
 
     add_executable(ComputerGraphics src/main.cpp ${SRC} ${INCLUDES})
     target_link_libraries(ComputerGraphics glfw3.lib opengl32 assimp-vc142-mt.lib)
